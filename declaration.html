@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>声明 - 摩斯喵语转译器</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background: #f0f0f0;
+            border-radius: 20px;
+            box-shadow: 
+                10px 10px 20px rgba(0, 0, 0, 0.1),
+                -10px -10px 20px rgba(255, 255, 255, 0.8);
+        }
+
+        h1 {
+            text-align: center;
+            color: #555;
+            margin-bottom: 30px;
+            font-size: 24px;
+        }
+
+        .section {
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 10px;
+            background: #f0f0f0;
+            box-shadow: 
+                inset 5px 5px 10px rgba(0, 0, 0, 0.05),
+                inset -5px -5px 10px rgba(255, 255, 255, 0.5);
+        }
+
+        h2 {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+
+        ul {
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 50px;
+            background: #f0f0f0;
+            box-shadow: 
+                5px 5px 10px rgba(0, 0, 0, 0.1),
+                -5px -5px 10px rgba(255, 255, 255, 0.8);
+            font-size: 14px;
+            color: #555;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            box-shadow: 
+                3px 3px 6px rgba(0, 0, 0, 0.1),
+                -3px -3px 6px rgba(255, 255, 255, 0.8);
+            transform: translateY(2px);
+        }
+
+        button:active {
+            box-shadow: 
+                inset 3px 3px 6px rgba(0, 0, 0, 0.1),
+                inset -3px -3px 6px rgba(255, 255, 255, 0.8);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>项目声明</h1>
+
+        <div class="section">
+            <h2>免责声明</h2>
+            <p>本工具为纯娱乐用途，仅用于趣味体验，不应用于任何实际通信或商业用途。</p>
+        </div>
+
+        <div class="section">
+            <h2>开源库声明</h2>
+            <p>本项目使用了以下开源库：</p>
+            <ul>
+                <li><strong>Electron</strong> - 用于构建跨平台桌面应用</li>
+                <li><strong>pinyin</strong> - 用于汉字转拼音功能</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>版权信息</h2>
+            <p>© 2026 MorseMeow Team</p>
+            <p>本项目采用 MIT 许可证开源，您可以自由使用、修改和分发代码。</p>
+        </div>
+
+        <div class="section">
+            <h2>联系方式</h2>
+            <p>如有任何问题或建议，欢迎联系我们：</p>
+            <p>项目地址：<a href="https://github.com/example/MorseMeow" target="_blank">https://github.com/example/MorseMeow</a></p>
+        </div>
+
+        <button onclick="window.close()">关闭</button>
+    </div>
+</body>
+</html>
