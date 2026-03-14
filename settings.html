@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>系统设置 - 摩斯喵语转译器</title>
+    <script>
+        // 应用主题
+        const theme = localStorage.getItem('theme') || 'light';
+        if (theme === 'dark') {
+            document.documentElement.classList.add('dark-theme');
+        } else {
+            document.documentElement.classList.remove('dark-theme');
+        }
+    </script>
+    <style>
+        /* 导入Roboto字体 - Google Material Design标准字体 */
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 18px;
+        }
+
+        body {
+            font-family: 'Roboto', 'Microsoft YaHei', Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #202124;
+            line-height: 1.5;
+            height: 100vh;
+            display: flex;
+            transition: all 0.3s ease;
+        }
+
+        /* 深色主题 */
+        html.dark-theme {
+            background-color: #121212;
+            color: #e8eaed;
+        }
+
+        html.dark-theme body {
+            background-color: #121212;
+            color: #e8eaed;
+        }
+
+        html.dark-theme .sidebar {
+            background: #1e1e1e;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        html.dark-theme .logo-section {
+            background: #1e1e1e;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        html.dark-theme .logo {
+            box-shadow: 0 2px 8px rgba(255, 102, 102, 0.3);
+        }
+
+        html.dark-theme .logo-title {
+            color: #e8eaed;
+        }
+
+        html.dark-theme .logo-subtitle {
+            color: #9aa0a6;
+        }
+
+        html.dark-theme .nav-item {
+            background: #1e1e1e;
+            color: #e8eaed;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        html.dark-theme .nav-item:hover {
+            background: rgba(255, 102, 102, 0.15);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        html.dark-theme .nav-item.active {
+            background: rgba(255, 102, 102, 0.25);
+            color: #ff8888;
+        }
+
+        html.dark-theme .main-content {
+            background: #121212;
+        }
+
+        html.dark-theme h1 {
+            color: #e8eaed;
+            background: #1e1e1e;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            border: 1px solid #3c4043;
+        }
+
+        html.dark-theme .settings-section {
+            background: #1e1e1e;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            border: 1px solid #3c4043;
+        }
+
+        html.dark-theme h2 {
+            color: #d2d2d2;
+        }
+
+        html.dark-theme .setting-label {
+            color: #e8eaed;
+        }
+
+        html.dark-theme .setting-value {
+            color: #9aa0a6;
+        }
+
+        html.dark-theme .setting-select {
+            background: #3c4043;
+            color: #e8eaed;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        html.dark-theme .setting-select:focus {
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        html.dark-theme .setting-toggle {
+            background: #3c4043;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        html.dark-theme .setting-toggle::before {
+            background: #dadce0;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        html.dark-theme .setting-toggle:hover {
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        html.dark-theme .setting-toggle.active {
+            background: rgba(255, 102, 102, 0.25);
+        }
+
+        html.dark-theme .save-button {
+            background: #3c4043;
+            color: #e8eaed;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        html.dark-theme .save-button:hover {
+            background: #494c50;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            color: #ff8888;
+        }
+
+        html.dark-theme .success-message {
+            background: rgba(76, 175, 80, 0.15);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        html.dark-theme footer {
+            background: #1e1e1e;
+            color: #9aa0a6;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            border: 1px solid #3c4043;
+        }
+
+        html.dark-theme footer a {
+            color: #ff8888;
+        }
+
+        html.dark-theme footer a:hover {
+            color: #ff6666;
+        }
+
+        /* 左侧导航栏 */
+        .sidebar {
+            width: 240px;
+            background: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 24px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: fixed;
+            height: 100vh;
+            border-right: 1px solid #dadce0;
+            transition: all 0.3s ease;
+        }
+
+        .logo-section {
+            text-align: center;
+            margin-bottom: 32px;
+            padding: 20px;
+            border-radius: 12px;
+            background: #ffffff;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            width: 100%;
+        }
+
+        .logo {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff9999, #ff6666);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            font-size: 24px;
+            color: white;
+            box-shadow: 0 2px 8px rgba(255, 102, 102, 0.3);
+            transition: all 0.2s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(255, 102, 102, 0.4);
+        }
+
+        .logo-title {
+            font-size: 20px;
+            font-weight: 500;
+            color: #202124;
+            margin-bottom: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        .logo-subtitle {
+            font-size: 14px;
+            color: #5f6368;
+            font-weight: 400;
+        }
+
+        .nav-menu {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #5f6368;
+            text-decoration: none;
+            background: #ffffff;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-item:hover {
+            background: rgba(255, 102, 102, 0.08);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+            transform: translateX(4px);
+        }
+
+        .nav-item.active {
+            background: rgba(255, 102, 102, 0.15);
+            color: #ff6666;
+            font-weight: 500;
+        }
+
+        .nav-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .nav-icon img {
+            color: #5f6368;
+            fill: currentColor;
+        }
+
+        html.dark-theme .nav-icon img {
+            color: #e8eaed;
+        }
+
+        .logo img {
+            color: white;
+            fill: currentColor;
+        }
+
+        /* 主内容区域 */
+        .main-content {
+            flex: 1;
+            margin-left: 240px;
+            padding: 32px;
+            overflow-y: auto;
+            background: #f8f9fa;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #202124;
+            margin-bottom: 32px;
+            font-size: 28px;
+            font-weight: 500;
+            padding: 20px;
+            border-radius: 8px;
+            background: #ffffff;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            border: 1px solid #dadce0;
+            transition: all 0.2s ease;
+        }
+
+        h1:hover {
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+            transform: translateY(-1px);
+        }
+
+        .settings-section {
+            padding: 24px;
+            border-radius: 8px;
+            background: #ffffff;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 32px;
+            transition: all 0.2s ease;
+            border: 1px solid #dadce0;
+        }
+
+        .settings-section:hover {
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+            transform: translateY(-1px);
+        }
+
+        h2 {
+            font-size: 16px;
+            font-weight: 500;
+            color: #202124;
+            margin-bottom: 20px;
+            letter-spacing: 0.25px;
+        }
+
+        .setting-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 0;
+            border-bottom: 1px solid #f0f0f0;
+            transition: all 0.2s ease;
+        }
+
+        .setting-item:hover {
+            transform: translateX(4px);
+        }
+
+        .setting-item:last-child {
+            border-bottom: none;
+        }
+
+        .setting-label {
+            font-size: 14px;
+            font-weight: 500;
+            color: #202124;
+            letter-spacing: 0.25px;
+        }
+
+        .setting-value {
+            font-size: 14px;
+            font-weight: 400;
+            color: #5f6368;
+        }
+
+        .setting-controls {
+            display: flex;
+            gap: 12px;
+        }
+
+        .setting-select {
+            padding: 8px 12px;
+            border: 1px solid #dadce0;
+            border-radius: 4px;
+            background: #ffffff;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            font-size: 14px;
+            font-weight: 400;
+            color: #202124;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: 'Roboto', 'Microsoft YaHei', Arial, sans-serif;
+        }
+
+        .setting-select:focus {
+            outline: none;
+            border-color: #ff6666;
+            box-shadow: 0 0 0 3px rgba(255, 102, 102, 0.1);
+        }
+
+        .setting-toggle {
+            position: relative;
+            width: 56px;
+            height: 32px;
+            background: #dadce0;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            border-radius: 16px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .setting-toggle::before {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 28px;
+            height: 28px;
+            background: #ffffff;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            transition: all 0.2s ease;
+        }
+
+        .setting-toggle:hover {
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+        }
+
+        .setting-toggle.active {
+            background: rgba(255, 102, 102, 0.5);
+        }
+
+        .setting-toggle.active::before {
+            transform: translateX(24px);
+            background: #ffffff;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .save-button {
+            display: block;
+            margin: 32px auto 0;
+            padding: 10px 24px;
+            border: none;
+            border-radius: 4px;
+            background: #f8f9fa;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            font-size: 14px;
+            font-weight: 500;
+            color: #202124;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: 'Roboto', 'Microsoft YaHei', Arial, sans-serif;
+            letter-spacing: 0.25px;
+        }
+
+        .save-button:hover {
+            background: #f1f3f4;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+            transform: translateY(-1px);
+            color: #ff6666;
+        }
+
+        .success-message {
+            text-align: center;
+            color: #4CAF50;
+            margin-top: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            display: none;
+            padding: 12px;
+            border-radius: 4px;
+            background: rgba(76, 175, 80, 0.1);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .preview-section {
+            padding: 16px;
+            border-radius: 8px;
+            background: #f8f9fa;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            border: 1px solid #dadce0;
+        }
+
+        html.dark-theme .preview-section {
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            border: 1px solid #3c4043;
+        }
+
+        .preview-item {
+            margin-bottom: 16px;
+        }
+
+        .preview-label {
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 12px;
+            color: #202124;
+            letter-spacing: 0.25px;
+        }
+
+        html.dark-theme .preview-label {
+            color: #e8eaed;
+        }
+
+        .preview-content {
+            padding: 16px;
+            border-radius: 4px;
+            background: #ffffff;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            line-height: 1.5;
+            border: 1px solid #dadce0;
+        }
+
+        html.dark-theme .preview-content {
+            background: #1e1e1e;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            border: 1px solid #3c4043;
+        }
+
+        .preview-content p {
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 400;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 14px;
+            font-weight: 400;
+            color: #5f6368;
+            padding: 20px;
+            border-radius: 8px;
+            background: #ffffff;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-top: 32px;
+            transition: all 0.2s ease;
+            border: 1px solid #dadce0;
+        }
+
+        footer:hover {
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+            transform: translateY(-1px);
+        }
+
+        footer a {
+            color: #ff6666;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+            color: #ff3333;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 200px;
+                padding: 16px 12px;
+            }
+
+            .main-content {
+                margin-left: 200px;
+                padding: 20px;
+            }
+
+            .logo {
+                width: 56px;
+                height: 56px;
+                font-size: 20px;
+            }
+
+            .logo-title {
+                font-size: 18px;
+            }
+
+            .nav-item {
+                padding: 10px 12px;
+            }
+
+            .nav-icon {
+                width: 18px;
+                height: 18px;
+                margin-right: 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                padding: 16px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                border-right: none;
+                border-bottom: 1px solid #dadce0;
+            }
+
+            .main-content {
+                margin-left: 0;
+                margin-top: 160px;
+                padding: 16px;
+            }
+
+            .logo-section {
+                margin-bottom: 16px;
+            }
+
+            .nav-menu {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-item {
+                flex: 1;
+                min-width: 100px;
+                justify-content: center;
+                padding: 8px;
+            }
+
+            .nav-icon {
+                margin-right: 4px;
+            }
+
+            .setting-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+
+            .setting-controls {
+                align-self: flex-end;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 左侧导航栏 -->
+    <div class="sidebar">
+        <div class="logo-section">
+            <div class="logo"><img src="icons/cat.svg" alt="MemMeow Logo" width="24" height="24"></div>
+            <div class="logo-title">MemMeow</div>
+            <div class="logo-subtitle">摩斯喵语转换器</div>
+        </div>
+        <nav class="nav-menu">
+            <a href="index.html" class="nav-item">
+                <div class="nav-icon"><img src="icons/home.svg" alt="首页" width="20" height="20"></div>
+                <span>首页</span>
+            </a>
+            <a href="history.html" class="nav-item">
+                <div class="nav-icon"><img src="icons/history.svg" alt="转译历史" width="20" height="20"></div>
+                <span>转译历史</span>
+            </a>
+            <a href="settings.html" class="nav-item active">
+                <div class="nav-icon"><img src="icons/settings.svg" alt="系统设置" width="20" height="20"></div>
+                <span>系统设置</span>
+            </a>
+            <a href="about.html" class="nav-item">
+                <div class="nav-icon"><img src="icons/info.svg" alt="关于" width="20" height="20"></div>
+                <span>关于</span>
+            </a>
+            <a href="declaration.html" class="nav-item">
+                <div class="nav-icon"><img src="icons/document.svg" alt="声明" width="20" height="20"></div>
+                <span>声明</span>
+            </a>
+        </nav>
+    </div>
+
+    <!-- 主内容区域 -->
+    <div class="main-content">
+        <div class="container">
+            <h1>系统设置</h1>
+
+            <div class="settings-section">
+                <h2>基本设置</h2>
+                
+                <div class="setting-item">
+                    <div class="setting-label">界面语言</div>
+                    <div class="setting-controls">
+                        <select class="setting-select" id="languageSelect">
+                            <option value="zh-CN">简体中文</option>
+                            <option value="en">English</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="setting-item">
+                    <div class="setting-label">主题模式</div>
+                    <div class="setting-controls">
+                        <div class="setting-toggle" id="themeToggle"></div>
+                    </div>
+                </div>
+
+                <div class="setting-item">
+                    <div class="setting-label">保存转译历史</div>
+                    <div class="setting-controls">
+                        <div class="setting-toggle" id="historyToggle"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h2>转译规则</h2>
+                
+                <div class="setting-item">
+                    <div class="setting-label">摩斯点符号</div>
+                    <div class="setting-controls">
+                        <select class="setting-select" id="dotSymbolSelect">
+                            <option value=".">点 (.)</option>
+                            <option value="·">中点 (·)</option>
+                            <option value="*">星号 (*)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="setting-item">
+                    <div class="setting-label">摩斯划符号</div>
+                    <div class="setting-controls">
+                        <select class="setting-select" id="dashSymbolSelect">
+                            <option value="-">横杠 (-)</option>
+                            <option value="—">长横 (—)</option>
+                            <option value="_">下划线 (_)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="setting-item">
+                    <div class="setting-label">分隔符</div>
+                    <div class="setting-controls">
+                        <select class="setting-select" id="separatorSelect">
+                            <option value="/">斜杠 (/)</option>
+                            <option value="|">竖杠 (|)</option>
+                            <option value=",">逗号 (,)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h2>实时预览</h2>
+                <div class="preview-section">
+                    <div class="preview-item">
+                        <div class="preview-label">当前设置效果</div>
+                        <div class="preview-content" id="previewContent">
+                            <p><strong>输入:</strong> SOS</p>
+                            <p><strong>摩斯电码:</strong> ... --- ...</p>
+                            <p><strong>喵语:</strong> 喵喵喵 呜呜呜 喵喵喵</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="save-button" onclick="saveSettings()">保存设置</button>
+            <div class="success-message" id="successMessage">设置保存成功！</div>
+
+            <footer>
+                <p>项目地址: <a href="https://github.com/example/MorseMeow" target="_blank">https://github.com/example/MorseMeow</a></p>
+            </footer>
+        </div>
+    </div>
+
+    <script src="lang.js"></script>
+    <script>
+
+
+        // 应用语言
+        function applyLanguage() {
+            // 导航栏
+            document.querySelector('.logo-title').textContent = t('memMeow');
+            document.querySelector('.logo-subtitle').textContent = t('morseMeowTranslator');
+            document.querySelectorAll('.nav-item')[0].querySelector('span').textContent = t('home');
+            document.querySelectorAll('.nav-item')[1].querySelector('span').textContent = t('history');
+            document.querySelectorAll('.nav-item')[2].querySelector('span').textContent = t('settings');
+            document.querySelectorAll('.nav-item')[3].querySelector('span').textContent = t('about');
+            document.querySelectorAll('.nav-item')[4].querySelector('span').textContent = t('declaration');
+            
+            // 主内容
+            document.querySelector('h1').textContent = t('systemSettings');
+            document.querySelectorAll('.settings-section h2')[0].textContent = t('basicSettings');
+            document.querySelectorAll('.setting-label')[0].textContent = t('interfaceLanguage');
+            document.querySelectorAll('.setting-label')[1].textContent = t('themeMode');
+            document.querySelectorAll('.setting-label')[2].textContent = t('saveTranslationHistory');
+            document.querySelectorAll('.settings-section h2')[1].textContent = t('translationRules');
+            document.querySelectorAll('.setting-label')[3].textContent = t('morseDotSymbol');
+            document.querySelectorAll('.setting-label')[4].textContent = t('morseDashSymbol');
+            document.querySelectorAll('.setting-label')[5].textContent = t('separator');
+            document.querySelector('.save-button').textContent = t('saveSettings');
+            document.getElementById('successMessage').textContent = t('settingsSavedSuccessfully');
+            
+            // 页脚
+            document.querySelector('footer p').innerHTML = t('projectAddress') + ': <a href="https://github.com/example/MorseMeow" target="_blank">https://github.com/example/MorseMeow</a>';
+        }
+
+        // 加载设置
+        function loadSettings() {
+            const language = localStorage.getItem('language') || 'zh-CN';
+            const theme = localStorage.getItem('theme') || 'light';
+            const saveHistory = localStorage.getItem('saveHistory') !== 'false';
+            const dotSymbol = localStorage.getItem('dotSymbol') || '.';
+            const dashSymbol = localStorage.getItem('dashSymbol') || '-';
+            const separator = localStorage.getItem('separator') || '/';
+
+            document.getElementById('languageSelect').value = language;
+            document.getElementById('dotSymbolSelect').value = dotSymbol;
+            document.getElementById('dashSymbolSelect').value = dashSymbol;
+            document.getElementById('separatorSelect').value = separator;
+
+            if (theme === 'dark') {
+                document.getElementById('themeToggle').classList.add('active');
+            }
+
+            if (saveHistory) {
+                document.getElementById('historyToggle').classList.add('active');
+            }
+
+            // 应用语言
+            applyLanguage();
+        }
+
+        // 切换开关状态
+        function toggleSwitch(element) {
+            element.classList.toggle('active');
+        }
+
+        // 保存设置
+        function saveSettings() {
+            const language = document.getElementById('languageSelect').value;
+            const theme = document.getElementById('themeToggle').classList.contains('active') ? 'dark' : 'light';
+            const saveHistory = document.getElementById('historyToggle').classList.contains('active');
+            const dotSymbol = document.getElementById('dotSymbolSelect').value;
+            const dashSymbol = document.getElementById('dashSymbolSelect').value;
+            const separator = document.getElementById('separatorSelect').value;
+
+            localStorage.setItem('language', language);
+            localStorage.setItem('theme', theme);
+            localStorage.setItem('saveHistory', saveHistory);
+            localStorage.setItem('dotSymbol', dotSymbol);
+            localStorage.setItem('dashSymbol', dashSymbol);
+            localStorage.setItem('separator', separator);
+
+            // 显示成功消息
+            const successMessage = document.getElementById('successMessage');
+            successMessage.textContent = t('settingsSavedSuccessfully');
+            successMessage.style.display = 'block';
+            setTimeout(() => {
+                successMessage.style.display = 'none';
+            }, 2000);
+        }
+
+        // 更新实时预览
+        function updatePreview() {
+            const dotSymbol = document.getElementById('dotSymbolSelect').value;
+            const dashSymbol = document.getElementById('dashSymbolSelect').value;
+            const separator = document.getElementById('separatorSelect').value;
+            
+            // 模拟转换效果
+            const testInput = 'SOS';
+            const morseCode = testInput.split('').map(char => {
+                const code = {
+                    'S': '...',
+                    'O': '---'
+                }[char] || '';
+                return code.replace(/\./g, dotSymbol).replace(/-/g, dashSymbol);
+            }).join(' ');
+            
+            const meowCode = morseCode
+                .replace(new RegExp(dotSymbol, 'g'), '喵')
+                .replace(new RegExp(dashSymbol, 'g'), '呜')
+                .replace(new RegExp(separator, 'g'), '……');
+            
+            const previewContent = document.getElementById('previewContent');
+            previewContent.innerHTML = `
+                <p><strong>${t('input')}:</strong> ${testInput}</p>
+                <p><strong>${t('morseCode')}:</strong> ${morseCode}</p>
+                <p><strong>${t('meowLanguageExample')}:</strong> ${meowCode}</p>
+            `;
+        }
+
+        // 绑定事件
+        document.getElementById('themeToggle').addEventListener('click', function() {
+            toggleSwitch(this);
+        });
+
+        document.getElementById('historyToggle').addEventListener('click', function() {
+            toggleSwitch(this);
+        });
+
+        // 为转译规则设置添加事件监听器
+        document.getElementById('dotSymbolSelect').addEventListener('change', updatePreview);
+        document.getElementById('dashSymbolSelect').addEventListener('change', updatePreview);
+        document.getElementById('separatorSelect').addEventListener('change', updatePreview);
+
+        // 页面加载时加载设置和更新预览
+        window.onload = function() {
+            loadSettings();
+            updatePreview();
+        };
+    </script>
+</body>
+</html>

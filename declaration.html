@@ -4,52 +4,312 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>声明 - 摩斯喵语转译器</title>
+    <script>
+        // 应用主题
+        const theme = localStorage.getItem('theme') || 'light';
+        if (theme === 'dark') {
+            document.documentElement.classList.add('dark-theme');
+        } else {
+            document.documentElement.classList.remove('dark-theme');
+        }
+    </script>
     <style>
+        /* 导入Roboto字体 - Google Material Design标准字体 */
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        html {
+            font-size: 18px;
+        }
+
         body {
-            font-family: 'Microsoft YaHei', Arial, sans-serif;
-            background-color: #f0f0f0;
-            color: #333;
-            line-height: 1.6;
+            font-family: 'Roboto', 'Microsoft YaHei', Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #202124;
+            line-height: 1.5;
+            height: 100vh;
+            display: flex;
+            transition: all 0.3s ease;
+        }
+
+        /* 深色主题 */
+        html.dark-theme {
+            background-color: #121212;
+            color: #e8eaed;
+        }
+
+        html.dark-theme body {
+            background-color: #121212;
+            color: #e8eaed;
+        }
+
+        html.dark-theme .sidebar {
+            background: #1e1e1e;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        html.dark-theme .logo-section {
+            background: #1e1e1e;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        html.dark-theme .logo {
+            box-shadow: 0 2px 8px rgba(255, 102, 102, 0.3);
+        }
+
+        html.dark-theme .logo-title {
+            color: #e8eaed;
+        }
+
+        html.dark-theme .logo-subtitle {
+            color: #9aa0a6;
+        }
+
+        html.dark-theme .nav-item {
+            background: #1e1e1e;
+            color: #e8eaed;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        html.dark-theme .nav-item:hover {
+            background: rgba(255, 102, 102, 0.15);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        html.dark-theme .nav-item.active {
+            background: rgba(255, 102, 102, 0.25);
+            color: #ff8888;
+        }
+
+        html.dark-theme .main-content {
+            background: #121212;
+        }
+
+        html.dark-theme h1 {
+            color: #e8eaed;
+            background: #1e1e1e;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            border: 1px solid #3c4043;
+        }
+
+        html.dark-theme .section {
+            background: #1e1e1e;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            border: 1px solid #3c4043;
+        }
+
+        html.dark-theme footer {
+            background: #1e1e1e;
+            color: #9aa0a6;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            border: 1px solid #3c4043;
+        }
+
+        html.dark-theme h2 {
+            color: #d2d2d2;
+        }
+
+        html.dark-theme button {
+            background: #3c4043;
+            color: #e8eaed;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        html.dark-theme button:hover {
+            background: #494c50;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            color: #ff8888;
+        }
+
+        html.dark-theme footer {
+            background: #1e1e1e;
+            color: #9aa0a6;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        html.dark-theme footer a {
+            color: #ff8888;
+        }
+
+        html.dark-theme footer a:hover {
+            color: #ff6666;
+        }
+
+        /* 左侧导航栏 */
+        .sidebar {
+            width: 240px;
+            background: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 24px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: fixed;
+            height: 100vh;
+            border-right: 1px solid #dadce0;
+            transition: all 0.3s ease;
+        }
+
+        .logo-section {
+            text-align: center;
+            margin-bottom: 32px;
+            padding: 20px;
+            border-radius: 12px;
+            background: #ffffff;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            width: 100%;
+        }
+
+        .logo {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #ff9999, #ff6666);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 16px;
+            font-size: 24px;
+            color: white;
+            box-shadow: 0 2px 8px rgba(255, 102, 102, 0.3);
+            transition: all 0.2s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(255, 102, 102, 0.4);
+        }
+
+        .logo-title {
+            font-size: 20px;
+            font-weight: 500;
+            color: #202124;
+            margin-bottom: 4px;
+            letter-spacing: 0.5px;
+        }
+
+        .logo-subtitle {
+            font-size: 14px;
+            color: #5f6368;
+            font-weight: 400;
+        }
+
+        .nav-menu {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #5f6368;
+            text-decoration: none;
+            background: #ffffff;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-item:hover {
+            background: rgba(255, 102, 102, 0.08);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+            transform: translateX(4px);
+        }
+
+        .nav-item.active {
+            background: rgba(255, 102, 102, 0.15);
+            color: #ff6666;
+            font-weight: 500;
+        }
+
+        .nav-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .nav-icon img {
+            color: #5f6368;
+            fill: currentColor;
+        }
+
+        html.dark-theme .nav-icon img {
+            color: #e8eaed;
+        }
+
+        .logo img {
+            color: white;
+            fill: currentColor;
+        }
+
+        /* 主内容区域 */
+        .main-content {
+            flex: 1;
+            margin-left: 240px;
+            padding: 32px;
+            overflow-y: auto;
+            background: #f8f9fa;
+            min-height: 100vh;
         }
 
         .container {
-            max-width: 600px;
-            margin: 20px auto;
-            padding: 20px;
-            background: #f0f0f0;
-            border-radius: 20px;
-            box-shadow: 
-                10px 10px 20px rgba(0, 0, 0, 0.1),
-                -10px -10px 20px rgba(255, 255, 255, 0.8);
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
         h1 {
             text-align: center;
-            color: #555;
-            margin-bottom: 30px;
-            font-size: 24px;
+            color: #202124;
+            margin-bottom: 32px;
+            font-size: 28px;
+            font-weight: 500;
+            padding: 20px;
+            border-radius: 8px;
+            background: #ffffff;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            border: 1px solid #dadce0;
+            transition: all 0.2s ease;
+        }
+
+        h1:hover {
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+            transform: translateY(-1px);
         }
 
         .section {
-            padding: 15px;
+            padding: 20px;
             margin: 20px 0;
-            border-radius: 10px;
-            background: #f0f0f0;
-            box-shadow: 
-                inset 5px 5px 10px rgba(0, 0, 0, 0.05),
-                inset -5px -5px 10px rgba(255, 255, 255, 0.5);
+            border-radius: 8px;
+            background: #ffffff;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s ease;
+            border: 1px solid #dadce0;
+        }
+
+        .section:hover {
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+            transform: translateY(-1px);
         }
 
         h2 {
-            font-size: 18px;
-            color: #666;
-            margin-bottom: 15px;
+            font-size: 16px;
+            font-weight: 500;
+            color: #202124;
+            margin: 24px 0 16px;
+            letter-spacing: 0.25px;
         }
 
         p {
@@ -67,65 +327,251 @@
 
         button {
             display: block;
-            margin: 20px auto;
-            padding: 10px 20px;
+            margin: 24px auto 0;
+            padding: 8px 16px;
             border: none;
-            border-radius: 50px;
-            background: #f0f0f0;
-            box-shadow: 
-                5px 5px 10px rgba(0, 0, 0, 0.1),
-                -5px -5px 10px rgba(255, 255, 255, 0.8);
+            border-radius: 4px;
+            background: #f8f9fa;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
             font-size: 14px;
-            color: #555;
+            font-weight: 500;
+            color: #202124;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
+            font-family: 'Roboto', 'Microsoft YaHei', Arial, sans-serif;
+            letter-spacing: 0.25px;
         }
 
         button:hover {
-            box-shadow: 
-                3px 3px 6px rgba(0, 0, 0, 0.1),
-                -3px -3px 6px rgba(255, 255, 255, 0.8);
-            transform: translateY(2px);
+            background: #f1f3f4;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+            transform: translateY(-1px);
+            color: #ff6666;
         }
 
-        button:active {
-            box-shadow: 
-                inset 3px 3px 6px rgba(0, 0, 0, 0.1),
-                inset -3px -3px 6px rgba(255, 255, 255, 0.8);
+        footer {
+            text-align: center;
+            font-size: 14px;
+            font-weight: 400;
+            color: #5f6368;
+            padding: 20px;
+            border-radius: 8px;
+            background: #ffffff;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-top: 32px;
+            transition: all 0.2s ease;
+            border: 1px solid #dadce0;
+        }
+
+        footer:hover {
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+            transform: translateY(-1px);
+        }
+
+        footer a {
+            color: #ff6666;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+            color: #ff3333;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 200px;
+                padding: 16px 12px;
+            }
+
+            .main-content {
+                margin-left: 200px;
+                padding: 20px;
+            }
+
+            .logo {
+                width: 56px;
+                height: 56px;
+                font-size: 20px;
+            }
+
+            .logo-title {
+                font-size: 18px;
+            }
+
+            .nav-item {
+                padding: 10px 12px;
+            }
+
+            .nav-icon {
+                width: 18px;
+                height: 18px;
+                margin-right: 8px;
+            }
+
+            h1 {
+                font-size: 24px;
+                margin-bottom: 24px;
+            }
+
+            h2 {
+                font-size: 16px;
+                margin: 20px 0 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                padding: 16px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                border-right: none;
+                border-bottom: 1px solid #dadce0;
+            }
+
+            .main-content {
+                margin-left: 0;
+                margin-top: 160px;
+                padding: 16px;
+            }
+
+            .logo-section {
+                margin-bottom: 16px;
+            }
+
+            .nav-menu {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .nav-item {
+                flex: 1;
+                min-width: 100px;
+                justify-content: center;
+                padding: 8px;
+            }
+
+            .nav-icon {
+                margin-right: 4px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>项目声明</h1>
-
-        <div class="section">
-            <h2>免责声明</h2>
-            <p>本工具为纯娱乐用途，仅用于趣味体验，不应用于任何实际通信或商业用途。</p>
+    <!-- 左侧导航栏 -->
+    <div class="sidebar">
+        <div class="logo-section">
+            <div class="logo"><img src="icons/cat.svg" alt="MemMeow Logo" width="24" height="24"></div>
+            <div class="logo-title">MemMeow</div>
+            <div class="logo-subtitle">摩斯喵语转换器</div>
         </div>
-
-        <div class="section">
-            <h2>开源库声明</h2>
-            <p>本项目使用了以下开源库：</p>
-            <ul>
-                <li><strong>Electron</strong> - 用于构建跨平台桌面应用</li>
-                <li><strong>pinyin</strong> - 用于汉字转拼音功能</li>
-            </ul>
-        </div>
-
-        <div class="section">
-            <h2>版权信息</h2>
-            <p>© 2026 MorseMeow Team</p>
-            <p>本项目采用 MIT 许可证开源，您可以自由使用、修改和分发代码。</p>
-        </div>
-
-        <div class="section">
-            <h2>联系方式</h2>
-            <p>如有任何问题或建议，欢迎联系我们：</p>
-            <p>项目地址：<a href="https://github.com/example/MorseMeow" target="_blank">https://github.com/example/MorseMeow</a></p>
-        </div>
-
-        <button onclick="window.close()">关闭</button>
+        <nav class="nav-menu">
+            <a href="index.html" class="nav-item">
+                <div class="nav-icon"><img src="icons/home.svg" alt="首页" width="20" height="20"></div>
+                <span>首页</span>
+            </a>
+            <a href="history.html" class="nav-item">
+                <div class="nav-icon"><img src="icons/history.svg" alt="转译历史" width="20" height="20"></div>
+                <span>转译历史</span>
+            </a>
+            <a href="settings.html" class="nav-item">
+                <div class="nav-icon"><img src="icons/settings.svg" alt="系统设置" width="20" height="20"></div>
+                <span>系统设置</span>
+            </a>
+            <a href="about.html" class="nav-item">
+                <div class="nav-icon"><img src="icons/info.svg" alt="关于" width="20" height="20"></div>
+                <span>关于</span>
+            </a>
+            <a href="declaration.html" class="nav-item active">
+                <div class="nav-icon"><img src="icons/document.svg" alt="声明" width="20" height="20"></div>
+                <span>声明</span>
+            </a>
+        </nav>
     </div>
+
+    <!-- 主内容区域 -->
+    <div class="main-content">
+        <div class="container">
+            <h1>项目声明</h1>
+
+            <div class="section">
+                <h2>免责声明</h2>
+                <p>本工具为纯娱乐用途，仅用于趣味体验，不应用于任何实际通信或商业用途。</p>
+            </div>
+
+            <div class="section">
+                <h2>开源库声明</h2>
+                <p>本项目使用了以下开源库：</p>
+                <ul>
+                    <li><strong>Electron</strong> - 用于构建跨平台桌面应用</li>
+                    <!--<li><strong>pinyin</strong> - 用于汉字转拼音功能</li>!-->
+                </ul>
+            </div>
+
+            <div class="section">
+                <h2>版权信息</h2>
+                <p>© 2026 XingGreen</p>
+                <p>本项目采用 MIT 许可证开源，您可以自由使用、修改和分发代码。</p>
+            </div>
+
+            <div class="section">
+                <h2>联系方式</h2>
+                <p>如有任何问题或建议，欢迎联系我们：</p>
+                <p>项目地址：<a href="https://github.com/XingGreen/MemMeow_2" target="_blank">https://github.com/XingGreen/MemMeow_2</a></p>
+            </div>
+
+
+
+            <footer>
+                <p>© 2026 MemMeow 团队</p>
+            </footer>
+        </div>
+    </div>
+
+    <script src="lang.js"></script>
+    <script>
+        // 应用语言
+        function applyLanguage() {
+            // 导航栏
+            document.querySelector('.logo-title').textContent = t('memMeow');
+            document.querySelector('.logo-subtitle').textContent = t('morseMeowTranslator');
+            document.querySelectorAll('.nav-item')[0].querySelector('span').textContent = t('home');
+            document.querySelectorAll('.nav-item')[1].querySelector('span').textContent = t('history');
+            document.querySelectorAll('.nav-item')[2].querySelector('span').textContent = t('settings');
+            document.querySelectorAll('.nav-item')[3].querySelector('span').textContent = t('about');
+            document.querySelectorAll('.nav-item')[4].querySelector('span').textContent = t('declaration');
+            
+            // 主内容
+            document.querySelector('h1').textContent = t('projectDeclaration');
+            document.querySelectorAll('.section h2')[0].textContent = t('disclaimer');
+            document.querySelectorAll('.section p')[0].textContent = t('thisToolIsForEntertainmentPurposesOnly');
+            document.querySelectorAll('.section h2')[1].textContent = t('openSourceLibraryDeclaration');
+            document.querySelectorAll('.section p')[1].textContent = t('thisProjectUsesTheFollowingOpenSourceLibraries');
+            document.querySelectorAll('.section ul li')[0].innerHTML = '<strong>' + t('electron') + '</strong> - ' + t('forBuildingCrossPlatformDesktopApplications');
+            document.querySelectorAll('.section h2')[2].textContent = t('copyrightInformation');
+            document.querySelectorAll('.section p')[3].textContent = '© 2026 XingGreen';
+            document.querySelectorAll('.section p')[4].textContent = t('thisProjectIsOpenSourceUnderTheMITLicense');
+            document.querySelectorAll('.section h2')[3].textContent = t('contactInformation');
+            document.querySelectorAll('.section p')[5].textContent = t('ifYouHaveAnyQuestionsOrSuggestions');
+            document.querySelectorAll('.section p')[6].innerHTML = t('projectAddressLink') + ' <a href="https://github.com/XingGreen/MemMeow_2" target="_blank">https://github.com/XingGreen/MemMeow_2</a>';
+            document.querySelector('button').textContent = t('close');
+            
+            // 页脚
+            document.querySelector('footer p').textContent = '© 2026 MemMeow 团队';
+        }
+
+        // 页面加载时应用语言
+        window.onload = function() {
+            applyLanguage();
+        };
+    </script>
 </body>
 </html>

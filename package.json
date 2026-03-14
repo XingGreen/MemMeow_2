@@ -5,7 +5,23 @@
   "main": "index.js",
   "scripts": {
     "start": "electron .",
+    "build": "electron-builder",
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "build": {
+    "appId": "com.memmeow.translator",
+    "productName": "摩斯喵语转译器",
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "favicon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
   },
   "keywords": [],
   "author": "",
@@ -16,6 +32,7 @@
     "yauzl": "^3.2.0"
   },
   "devDependencies": {
-    "electron": "^40.6.1"
+    "electron": "^40.6.1",
+    "electron-builder": "^26.8.1"
   }
 }

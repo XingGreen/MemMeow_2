@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>欢迎使用 MemMeow</title>
+    <script>
+        // 应用主题
+        const theme = localStorage.getItem('theme') || 'light';
+        if (theme === 'dark') {
+            document.documentElement.classList.add('dark-theme');
+        } else {
+            document.documentElement.classList.remove('dark-theme');
+        }
+    </script>
+    <style>
+        /* 导入Roboto字体 - Google Material Design标准字体 */
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 18px;
+        }
+
+        body {
+            font-family: 'Roboto', 'Microsoft YaHei', Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #202124;
+            line-height: 1.5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 700px;
+            padding: 20px;
+        }
+
+        .card {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            padding: 32px;
+            text-align: center;
+            transition: all 0.2s ease;
+            border: 1px solid #dadce0;
+        }
+
+        .card:hover {
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+            transform: translateY(-1px);
+        }
+
+        h1 {
+            font-size: 24px;
+            font-weight: 500;
+            color: #202124;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        h2 {
+            font-size: 14px;
+            font-weight: 400;
+            color: #5f6368;
+            margin-bottom: 24px;
+            letter-spacing: 0.25px;
+        }
+
+        .step-title {
+            font-size: 20px;
+            font-weight: 500;
+            color: #202124;
+            margin-bottom: 8px;
+            letter-spacing: 0.25px;
+        }
+
+        .step-description {
+            font-size: 14px;
+            font-weight: 400;
+            color: #5f6368;
+            margin-bottom: 24px;
+            letter-spacing: 0.25px;
+        }
+
+        .option-title {
+            font-size: 16px;
+            font-weight: 500;
+            color: #202124;
+            margin-bottom: 16px;
+            letter-spacing: 0.25px;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+
+        .option-btn {
+            padding: 14px 16px;
+            border: 1px solid #dadce0;
+            border-radius: 4px;
+            background-color: #ffffff;
+            font-size: 14px;
+            font-weight: 400;
+            color: #202124;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: left;
+            font-family: 'Roboto', 'Microsoft YaHei', Arial, sans-serif;
+        }
+
+        .option-btn:hover {
+            border-color: #ff6666;
+            background-color: rgba(255, 102, 102, 0.05);
+        }
+
+        .option-btn.selected {
+            border-color: #ff6666;
+            background-color: rgba(255, 102, 102, 0.1);
+        }
+
+        .progress-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+        }
+
+        .progress-bar {
+            flex: 1;
+            height: 4px;
+            background-color: #dadce0;
+            border-radius: 2px;
+            margin: 0 16px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background-color: #ff6666;
+            border-radius: 2px;
+            transition: width 0.5s ease;
+        }
+
+        .progress-text {
+            font-size: 14px;
+            font-weight: 400;
+            color: #5f6368;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .btn {
+            padding: 10px 24px;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: 'Roboto', 'Microsoft YaHei', Arial, sans-serif;
+            letter-spacing: 0.25px;
+        }
+
+        .btn-secondary {
+            background-color: #f8f9fa;
+            color: #202124;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-secondary:hover {
+            background-color: #f1f3f4;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+            transform: translateY(-1px);
+        }
+
+        .btn-primary {
+            background-color: #ff6666;
+            color: #ffffff;
+            box-shadow: 0 1px 2px rgba(255, 102, 102, 0.3);
+        }
+
+        .btn-primary:hover {
+            background-color: #ff5252;
+            box-shadow: 0 2px 4px rgba(255, 102, 102, 0.4);
+            transform: translateY(-1px);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .feature-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 32px;
+        }
+
+        .feature-item {
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            padding: 12px 16px;
+            text-align: left;
+            font-size: 14px;
+            font-weight: 400;
+            color: #202124;
+            border: 1px solid #dadce0;
+        }
+
+        .feature-item::before {
+            content: "✓";
+            color: #ff6666;
+            font-weight: 500;
+            margin-right: 8px;
+        }
+
+        #step-2, #step-3 {
+            display: none;
+        }
+
+        /* 深色主题 */
+        html.dark-theme body {
+            background-color: #121212;
+            color: #e8eaed;
+        }
+
+        html.dark-theme .card {
+            background-color: #1e1e1e;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            border: 1px solid #3c4043;
+        }
+
+        html.dark-theme .feature-item {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: #e8eaed;
+            border: 1px solid #3c4043;
+        }
+
+        html.dark-theme .card:hover {
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        html.dark-theme h1 {
+            color: #e8eaed;
+        }
+
+        html.dark-theme h2 {
+            color: #9aa0a6;
+        }
+
+        html.dark-theme .step-title {
+            color: #e8eaed;
+        }
+
+        html.dark-theme .step-description {
+            color: #9aa0a6;
+        }
+
+        html.dark-theme .option-title {
+            color: #e8eaed;
+        }
+
+        html.dark-theme .option-btn {
+            background-color: #1e1e1e;
+            color: #e8eaed;
+            border-color: #3c4043;
+        }
+
+        html.dark-theme .option-btn:hover {
+            border-color: #ff8888;
+            background-color: rgba(255, 102, 102, 0.1);
+        }
+
+        html.dark-theme .option-btn.selected {
+            border-color: #ff6666;
+            background-color: rgba(255, 102, 102, 0.15);
+        }
+
+        html.dark-theme .progress-bar {
+            background-color: #3c4043;
+        }
+
+        html.dark-theme .progress-text {
+            color: #9aa0a6;
+        }
+
+        html.dark-theme .btn-secondary {
+            background-color: #3c4043;
+            color: #e8eaed;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        html.dark-theme .btn-secondary:hover {
+            background-color: #494c50;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        html.dark-theme .feature-item {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: #e8eaed;
+            border: 1px solid #3c4043;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 步骤 1：选择语言 -->
+        <div id="step-1" class="card">
+            <h1>欢迎使用 MemMeow</h1>
+            <h2>摩斯喵语转换器</h2>
+            <div class="step-title">选择语言</div>
+            <div class="step-description">请选择您偏好的界面语言</div>
+            
+            <div class="options">
+                <button class="option-btn" onclick="selectLanguage('zh-CN')">简体中文</button>
+                <button class="option-btn" onclick="selectLanguage('en')">English</button>
+            </div>
+            
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 33.33%;"></div>
+                </div>
+                <div class="progress-text">第 1/3 步</div>
+            </div>
+            
+            <div class="buttons">
+                <div style="width: 80px;"></div>
+                <button id="step1-next" class="btn btn-primary" disabled>确定</button>
+            </div>
+        </div>
+
+        <!-- 步骤 2：选择主题 -->
+        <div id="step-2" class="card">
+            <h1>欢迎使用 MemMeow</h1>
+            <h2>摩斯喵语转换器</h2>
+            <div class="step-title">选择主题</div>
+            <div class="step-description">选择您喜欢的界面外观</div>
+            
+            <div class="option-title">模式</div>
+            <div class="options">
+                <button class="option-btn" onclick="selectTheme('light')">浅色</button>
+                <button class="option-btn" onclick="selectTheme('dark')">深色</button>
+            </div>
+            
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 66.66%;"></div>
+                </div>
+                <div class="progress-text">第 2/3 步</div>
+            </div>
+            
+            <div class="buttons">
+                <button class="btn btn-secondary" onclick="goToStep(1)">上一步</button>
+                <button id="step2-next" class="btn btn-primary" disabled>下一步</button>
+            </div>
+        </div>
+
+        <!-- 步骤 3：准备就绪 -->
+        <div id="step-3" class="card">
+            <h1>欢迎使用 MemMeow</h1>
+            <h2>摩斯喵语转换器</h2>
+            <div class="step-title">准备就绪，开始使用 MemMeow 吧！</div>
+            
+            <div class="feature-list">
+                <div class="feature-item">轻松转换摩斯喵语</div>
+                <div class="feature-item">完整的转译历史</div>
+            </div>
+            
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" style="width: 100%;"></div>
+                </div>
+                <div class="progress-text">第 3/3 步</div>
+            </div>
+            
+            <div class="buttons">
+                <button class="btn btn-secondary" onclick="goToStep(2)">上一步</button>
+                <button class="btn btn-primary" onclick="startUsing()">开始使用</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="lang.js"></script>
+    <script>
+        let selectedLanguage = null;
+        let selectedTheme = null;
+
+        // 初始化语言
+        function initLanguage() {
+            // 尝试从本地存储获取语言设置
+            const savedLang = localStorage.getItem('language');
+            if (savedLang) {
+                selectedLanguage = savedLang;
+                updateInterfaceLanguage(savedLang);
+            }
+        }
+
+        // 更新界面语言
+        function updateInterfaceLanguage(lang) {
+            // 保存语言设置到本地存储
+            localStorage.setItem('language', lang);
+            
+            // 更新页面标题
+            document.title = t('welcomeToMemMeow');
+            
+            // 更新步骤 1
+            document.querySelectorAll('#step-1 h1')[0].textContent = t('welcomeToMemMeow');
+            document.querySelectorAll('#step-1 h2')[0].textContent = t('morseMeowTranslator');
+            document.querySelectorAll('#step-1 .step-title')[0].textContent = t('selectLanguage');
+            document.querySelectorAll('#step-1 .step-description')[0].textContent = t('pleaseSelectYourPreferredInterfaceLanguage');
+            document.querySelectorAll('#step-1 .option-btn')[0].textContent = t('simplifiedChinese');
+            document.querySelectorAll('#step-1 .option-btn')[1].textContent = t('english');
+            document.getElementById('step1-next').textContent = t('confirm');
+            document.querySelectorAll('#step-1 .progress-text')[0].textContent = t('step') + ' 1/3';
+            
+            // 更新步骤 2
+            document.querySelectorAll('#step-2 h1')[0].textContent = t('welcomeToMemMeow');
+            document.querySelectorAll('#step-2 h2')[0].textContent = t('morseMeowTranslator');
+            document.querySelectorAll('#step-2 .step-title')[0].textContent = t('selectTheme');
+            document.querySelectorAll('#step-2 .step-description')[0].textContent = t('selectYourPreferredInterfaceAppearance');
+            document.querySelectorAll('#step-2 .option-title')[0].textContent = t('mode');
+            document.querySelectorAll('#step-2 .option-btn')[0].textContent = t('light');
+            document.querySelectorAll('#step-2 .option-btn')[1].textContent = t('dark');
+            document.querySelectorAll('#step-2 .btn-secondary')[0].textContent = t('previous');
+            document.querySelectorAll('#step-2 .progress-text')[0].textContent = t('step') + ' 2/3';
+            document.getElementById('step2-next').textContent = t('next');
+            
+            // 更新步骤 3
+            document.querySelectorAll('#step-3 h1')[0].textContent = t('welcomeToMemMeow');
+            document.querySelectorAll('#step-3 h2')[0].textContent = t('morseMeowTranslator');
+            document.querySelectorAll('#step-3 .step-title')[0].textContent = t('readyToStartUsingMemMeow');
+            document.querySelectorAll('#step-3 .feature-item')[0].textContent = t('easilyConvertMorseMeow');
+            document.querySelectorAll('#step-3 .feature-item')[1].textContent = t('completeTranslationHistory');
+            document.querySelectorAll('#step-3 .btn-secondary')[0].textContent = t('previous');
+            document.querySelectorAll('#step-3 .progress-text')[0].textContent = t('step') + ' 3/3';
+            document.querySelectorAll('#step-3 .btn-primary')[0].textContent = t('startUsing');
+        }
+
+        function selectLanguage(lang) {
+            selectedLanguage = lang;
+            document.querySelectorAll('#step-1 .option-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            event.target.classList.add('selected');
+            document.getElementById('step1-next').disabled = false;
+            
+            // 立即更新界面语言
+            updateInterfaceLanguage(lang);
+        }
+
+        function selectTheme(theme) {
+            selectedTheme = theme;
+            document.querySelectorAll('#step-2 .option-btn').forEach(btn => {
+                btn.classList.remove('selected');
+            });
+            event.target.classList.add('selected');
+            document.getElementById('step2-next').disabled = false;
+            
+            // 立即更新界面主题
+            updateInterfaceTheme(theme);
+        }
+
+        // 更新界面主题
+        function updateInterfaceTheme(theme) {
+            // 保存主题设置到本地存储
+            localStorage.setItem('theme', theme);
+            
+            // 应用主题
+            if (theme === 'dark') {
+                document.documentElement.classList.add('dark-theme');
+            } else {
+                document.documentElement.classList.remove('dark-theme');
+            }
+        }
+
+        function goToStep(step) {
+            document.querySelectorAll('.card').forEach(card => {
+                card.style.display = 'none';
+            });
+            document.getElementById(`step-${step}`).style.display = 'block';
+        }
+
+        document.getElementById('step1-next').addEventListener('click', function() {
+            goToStep(2);
+        });
+
+        document.getElementById('step2-next').addEventListener('click', function() {
+            goToStep(3);
+        });
+
+        function startUsing() {
+            // 保存用户设置
+            localStorage.setItem('language', selectedLanguage);
+            localStorage.setItem('theme', selectedTheme);
+            
+            // 跳转到主界面
+            window.location.href = 'index.html';
+        }
+
+        // 页面加载时初始化语言
+        window.onload = function() {
+            initLanguage();
+        };
+    </script>
+</body>
+</html>

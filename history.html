@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>关于 - 摩斯喵语转译器</title>
+    <title>转译历史 - 摩斯喵语转译器</title>
     <script>
         // 应用主题
         const theme = localStorage.getItem('theme') || 'light';
@@ -97,32 +97,27 @@
             border: 1px solid #3c4043;
         }
 
-        html.dark-theme h2 {
-            color: #d2d2d2;
-        }
-
-        html.dark-theme .morse-table {
-            background: #1e1e1e;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-        }
-
-        html.dark-theme .morse-table th {
-            background: rgba(255, 102, 102, 0.15);
-            color: #ff8888;
-        }
-
-        html.dark-theme .morse-table td {
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        html.dark-theme .rule-section,
-        html.dark-theme .info-section {
+        html.dark-theme .history-section {
             background: #1e1e1e;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
             border: 1px solid #3c4043;
         }
 
-        html.dark-theme .morse-table {
+        html.dark-theme .history-item {
+            background: #1e1e1e;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            border: 1px solid #3c4043;
+        }
+
+        html.dark-theme .history-content {
+            color: #e8eaed;
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            border: 1px solid #3c4043;
+        }
+
+        html.dark-theme .empty-history {
+            color: #9aa0a6;
             background: #1e1e1e;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
             border: 1px solid #3c4043;
@@ -135,16 +130,53 @@
             border: 1px solid #3c4043;
         }
 
-        html.dark-theme button {
+        html.dark-theme h2 {
+            color: #d2d2d2;
+        }
+
+        html.dark-theme .clear-button {
             background: #3c4043;
             color: #e8eaed;
             box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
         }
 
-        html.dark-theme button:hover {
+        html.dark-theme .clear-button:hover {
             background: #494c50;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
             color: #ff8888;
+        }
+
+        html.dark-theme .history-item {
+            background: #1e1e1e;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        html.dark-theme .history-time {
+            color: #9aa0a6;
+        }
+
+        html.dark-theme .history-action-btn {
+            background: #3c4043;
+            color: #e8eaed;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        html.dark-theme .history-action-btn:hover {
+            background: #494c50;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            color: #ff8888;
+        }
+
+        html.dark-theme .history-content {
+            color: #e8eaed;
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        html.dark-theme .empty-history {
+            color: #9aa0a6;
+            background: #1e1e1e;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
         }
 
         html.dark-theme footer {
@@ -310,78 +342,36 @@
             transform: translateY(-1px);
         }
 
+        .history-section {
+            padding: 24px;
+            border-radius: 8px;
+            background: #ffffff;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 32px;
+            transition: all 0.2s ease;
+            border: 1px solid #dadce0;
+        }
+
+        .history-section:hover {
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+            transform: translateY(-1px);
+        }
+
+        .history-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
         h2 {
             font-size: 16px;
             font-weight: 500;
             color: #202124;
-            margin: 24px 0 16px;
             letter-spacing: 0.25px;
         }
 
-        .morse-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 16px 0;
-            background: #ffffff;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            overflow: hidden;
-            transition: all 0.2s ease;
-            border: 1px solid #dadce0;
-        }
-
-        .morse-table:hover {
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
-            transform: translateY(-1px);
-        }
-
-        .morse-table th, .morse-table td {
-            padding: 12px;
-            text-align: center;
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        .morse-table th {
-            background: rgba(255, 102, 102, 0.1);
-            font-weight: 500;
-            color: #ff6666;
-            letter-spacing: 0.25px;
-        }
-
-        .rule-section {
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 8px;
-            background: #ffffff;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            transition: all 0.2s ease;
-            border: 1px solid #dadce0;
-        }
-
-        .rule-section:hover {
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
-            transform: translateY(-1px);
-        }
-
-        .info-section {
-            text-align: center;
-            margin-top: 32px;
-            padding: 20px;
-            border-radius: 8px;
-            background: #ffffff;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            transition: all 0.2s ease;
-            border: 1px solid #dadce0;
-        }
-
-        .info-section:hover {
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
-            transform: translateY(-1px);
-        }
-
-        button {
-            display: block;
-            margin: 24px auto 0;
+        .clear-button {
             padding: 8px 16px;
             border: none;
             border-radius: 4px;
@@ -396,11 +386,94 @@
             letter-spacing: 0.25px;
         }
 
-        button:hover {
+        .clear-button:hover {
             background: #f1f3f4;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
             transform: translateY(-1px);
             color: #ff6666;
+        }
+
+        .history-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .history-item {
+            padding: 16px;
+            border-radius: 8px;
+            background: #ffffff;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s ease;
+            border: 1px solid #dadce0;
+        }
+
+        .history-item:hover {
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+            transform: translateY(-1px);
+        }
+
+        .history-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .history-time {
+            font-size: 14px;
+            font-weight: 400;
+            color: #5f6368;
+        }
+
+        .history-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .history-action-btn {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 4px;
+            background: #f8f9fa;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            font-size: 14px;
+            font-weight: 500;
+            color: #202124;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: 'Roboto', 'Microsoft YaHei', Arial, sans-serif;
+        }
+
+        .history-action-btn:hover {
+            background: #f1f3f4;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+            transform: translateY(-1px);
+            color: #ff6666;
+        }
+
+        .history-content {
+            font-size: 14px;
+            font-weight: 400;
+            color: #202124;
+            line-height: 1.5;
+            padding: 12px;
+            border-radius: 4px;
+            background: #f8f9fa;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            border: 1px solid #dadce0;
+        }
+
+        .empty-history {
+            text-align: center;
+            padding: 48px 20px;
+            color: #5f6368;
+            font-size: 16px;
+            font-weight: 400;
+            border-radius: 8px;
+            background: #ffffff;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            border: 1px solid #dadce0;
         }
 
         footer {
@@ -464,16 +537,6 @@
                 height: 18px;
                 margin-right: 8px;
             }
-
-            h1 {
-                font-size: 24px;
-                margin-bottom: 24px;
-            }
-
-            h2 {
-                font-size: 16px;
-                margin: 20px 0 12px;
-            }
         }
 
         @media (max-width: 480px) {
@@ -532,7 +595,7 @@
                 <div class="nav-icon"><img src="icons/home.svg" alt="首页" width="20" height="20"></div>
                 <span>首页</span>
             </a>
-            <a href="history.html" class="nav-item">
+            <a href="history.html" class="nav-item active">
                 <div class="nav-icon"><img src="icons/history.svg" alt="转译历史" width="20" height="20"></div>
                 <span>转译历史</span>
             </a>
@@ -540,7 +603,7 @@
                 <div class="nav-icon"><img src="icons/settings.svg" alt="系统设置" width="20" height="20"></div>
                 <span>系统设置</span>
             </a>
-            <a href="about.html" class="nav-item active">
+            <a href="about.html" class="nav-item">
                 <div class="nav-icon"><img src="icons/info.svg" alt="关于" width="20" height="20"></div>
                 <span>关于</span>
             </a>
@@ -554,70 +617,20 @@
     <!-- 主内容区域 -->
     <div class="main-content">
         <div class="container">
-            <h1>关于摩斯喵语转译器</h1>
+            <h1>转译历史</h1>
 
-            <h2>摩斯电码对照表</h2>
-            <table class="morse-table">
-                <tr>
-                    <th>字母/数字</th>
-                    <th>摩斯电码</th>
-                </tr>
-                <tr><td>A</td><td>.-</td></tr>
-                <tr><td>B</td><td>-...</td></tr>
-                <tr><td>C</td><td>-.-.</td></tr>
-                <tr><td>D</td><td>-..</td></tr>
-                <tr><td>E</td><td>.</td></tr>
-                <tr><td>F</td><td>..-.</td></tr>
-                <tr><td>G</td><td>--.</td></tr>
-                <tr><td>H</td><td>....</td></tr>
-                <tr><td>I</td><td>..</td></tr>
-                <tr><td>J</td><td>.---</td></tr>
-                <tr><td>K</td><td>-.-</td></tr>
-                <tr><td>L</td><td>.-..</td></tr>
-                <tr><td>M</td><td>--</td></tr>
-                <tr><td>N</td><td>-.</td></tr>
-                <tr><td>O</td><td>---</td></tr>
-                <tr><td>P</td><td>.--.</td></tr>
-                <tr><td>Q</td><td>--.-</td></tr>
-                <tr><td>R</td><td>.-.</td></tr>
-                <tr><td>S</td><td>...</td></tr>
-                <tr><td>T</td><td>-</td></tr>
-                <tr><td>U</td><td>..-</td></tr>
-                <tr><td>V</td><td>...-</td></tr>
-                <tr><td>W</td><td>.--</td></tr>
-                <tr><td>X</td><td>-..-</td></tr>
-                <tr><td>Y</td><td>-.--</td></tr>
-                <tr><td>Z</td><td>--..</td></tr>
-                <tr><td>0</td><td>-----</td></tr>
-                <tr><td>1</td><td>.----</td></tr>
-                <tr><td>2</td><td>..---</td></tr>
-                <tr><td>3</td><td>...--</td></tr>
-                <tr><td>4</td><td>....-</td></tr>
-                <tr><td>5</td><td>.....</td></tr>
-                <tr><td>6</td><td>-....</td></tr>
-                <tr><td>7</td><td>--...</td></tr>
-                <tr><td>8</td><td>---..</td></tr>
-                <tr><td>9</td><td>----.</td></tr>
-            </table>
-
-            <h2>喵语转换规则</h2>
-            <div class="rule-section">
-                <p>• 摩斯点（.） → 喵</p>
-                <p>• 摩斯划（-） → 呜</p>
-                <p>• 分隔符（/） → ……</p>
-            </div>
-
-            <h2>示例</h2>
-            <div class="rule-section">
-                <p><strong>输入：</strong>SOS</p>
-                <p><strong>摩斯电码：</strong>... --- ...</p>
-                <p><strong>喵语：</strong>喵喵喵 呜呜呜 喵喵喵</p>
-            </div>
-
-            <div class="info-section">
-                <p><strong>版本：</strong>1.0.0</p>
-                <p><strong>作者：</strong>MorseMeow Team</p>
-                <p><strong>功能：</strong>实现字母（支持汉字自动转拼音）、摩斯电码、喵语三者之间的双向转换</p>
+            <div class="history-section">
+                <div class="history-header">
+                    <h2>过往转译记录</h2>
+                    <button class="clear-button" onclick="clearHistory()">清空历史</button>
+                </div>
+                
+                <div class="history-list" id="historyList">
+                    <!-- 历史记录将通过 JavaScript 动态生成 -->
+                    <div class="empty-history" id="emptyHistory">
+                        暂无转译历史
+                    </div>
+                </div>
             </div>
 
             <footer>
@@ -637,6 +650,73 @@
     </script>
     <script src="lang.js"></script>
     <script>
+        // 加载历史记录
+        function loadHistory() {
+            const history = JSON.parse(localStorage.getItem('translationHistory') || '[]');
+            const historyList = document.getElementById('historyList');
+            const emptyHistory = document.getElementById('emptyHistory');
+            
+            if (history.length > 0) {
+                emptyHistory.style.display = 'none';
+                historyList.innerHTML = '';
+                
+                history.forEach((item, index) => {
+                    const historyItem = document.createElement('div');
+                    historyItem.className = 'history-item';
+                    historyItem.innerHTML = `
+                        <div class="history-item-header">
+                            <span class="history-time">${item.timestamp}</span>
+                            <div class="history-actions">
+                                <button class="history-action-btn" onclick="copyHistoryItem(${index})">{{copy}}</button>
+                                <button class="history-action-btn" onclick="deleteHistoryItem(${index})">{{delete}}</button>
+                            </div>
+                        </div>
+                        <div class="history-content">
+                            <strong>{{input}}:</strong> ${item.input}<br>
+                            <strong>{{output}}:</strong> ${item.output}<br>
+                            <strong>{{type}}:</strong> ${item.type}
+                        </div>
+                    `.replace(/{{copy}}/g, t('copy'))
+                      .replace(/{{delete}}/g, t('delete'))
+                      .replace(/{{input}}/g, t('input'))
+                      .replace(/{{output}}/g, t('output'))
+                      .replace(/{{type}}/g, t('type'));
+                    historyList.appendChild(historyItem);
+                });
+            } else {
+                emptyHistory.style.display = 'block';
+            }
+        }
+
+        // 清空历史记录
+        function clearHistory() {
+            if (confirm(t('confirmClearHistory'))) {
+                localStorage.removeItem('translationHistory');
+                loadHistory();
+            }
+        }
+
+        // 复制历史记录
+        function copyHistoryItem(index) {
+            const history = JSON.parse(localStorage.getItem('translationHistory') || '[]');
+            const item = history[index];
+            const textToCopy = item.output;
+            
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                alert(t('copySuccess'));
+            }).catch(err => {
+                console.error('复制失败:', err);
+            });
+        }
+
+        // 删除历史记录
+        function deleteHistoryItem(index) {
+            const history = JSON.parse(localStorage.getItem('translationHistory') || '[]');
+            history.splice(index, 1);
+            localStorage.setItem('translationHistory', JSON.stringify(history));
+            loadHistory();
+        }
+
         // 应用语言
         function applyLanguage() {
             // 导航栏
@@ -649,22 +729,18 @@
             document.querySelectorAll('.nav-item')[4].querySelector('span').textContent = t('declaration');
             
             // 主内容
-            document.querySelector('h1').textContent = t('aboutMorseMeowTranslator');
-            document.querySelectorAll('h2')[0].textContent = t('morseCodeTable');
-            document.querySelectorAll('th')[0].textContent = t('letterNumber');
-            document.querySelectorAll('th')[1].textContent = t('morseCode');
-            document.querySelectorAll('h2')[1].textContent = t('meowLanguageConversionRules');
-            document.querySelectorAll('h2')[2].textContent = t('example');
-            document.querySelectorAll('.info-section p')[0].innerHTML = '<strong>' + t('version') + ':</strong> 1.0.0';
-            document.querySelectorAll('.info-section p')[1].innerHTML = '<strong>' + t('author') + ':</strong> MorseMeow Team';
-            document.querySelectorAll('.info-section p')[2].innerHTML = '<strong>' + t('features') + ':</strong> ' + t('实现字母支持汉字自动转拼音摩斯电码喵语三者之间的双向转换');
+            document.querySelector('h1').textContent = t('translationHistory');
+            document.querySelector('.history-header h2').textContent = t('pastTranslationRecords');
+            document.querySelector('.clear-button').textContent = t('clearHistory');
+            document.querySelector('#emptyHistory').textContent = t('noTranslationHistory');
             
             // 页脚
             document.querySelector('footer p').innerHTML = t('projectAddress') + ': <a href="https://github.com/example/MorseMeow" target="_blank">https://github.com/example/MorseMeow</a>';
         }
 
-        // 页面加载时应用语言
+        // 页面加载时加载历史记录和应用语言
         window.onload = function() {
+            loadHistory();
             applyLanguage();
         };
     </script>
