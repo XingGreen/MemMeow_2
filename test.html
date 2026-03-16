@@ -155,6 +155,52 @@
                 max-width: 300px;
             }
         }
+
+        /* 深色主题 */
+        html.dark-theme body {
+            background-color: #121212;
+            color: #e8eaed;
+        }
+
+        html.dark-theme .container {
+            background-color: #1e1e1e;
+        }
+
+        html.dark-theme h1, html.dark-theme h2 {
+            color: #e8eaed;
+        }
+
+        html.dark-theme .input-section, html.dark-theme .output-section {
+            background-color: #1e1e1e;
+        }
+
+        html.dark-theme textarea {
+            background-color: #2d2d2d;
+            color: #e8eaed;
+            border-color: #3c4043;
+        }
+
+        html.dark-theme button {
+            background-color: #3c4043;
+            color: #e8eaed;
+        }
+
+        html.dark-theme footer {
+            background-color: #1e1e1e;
+            color: #9aa0a6;
+        }
+
+        html.dark-theme footer a {
+            color: #ff8888;
+        }
+
+        html.dark-theme .dev-badge span {
+            color: #ff8888 !important;
+        }
+
+        html.dark-theme .dev-badge span:last-child {
+            color: #e8eaed !important;
+        }
     </style>
 </head>
 <body>
@@ -180,6 +226,10 @@
 
         <footer>
             <p>项目地址: <a href="https://github.com/XingGreen/MemMeow_2" target="_blank">https://github.com/XingGreen/MemMeow_2</a></p>
+            <div style="margin-top: 10px; font-size: 12px;" class="dev-badge">
+                <span style="color: red;">开发中页面，不代表最终品质</span><br>
+                <span style="color: black;">MemMeow dev</span>
+            </div>
         </footer>
     </div>
 

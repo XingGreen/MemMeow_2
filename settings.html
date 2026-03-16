@@ -14,9 +14,6 @@
         }
     </script>
     <style>
-        /* 导入Roboto字体 - Google Material Design标准字体 */
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
-        
         * {
             margin: 0;
             padding: 0;
@@ -28,11 +25,11 @@
         }
 
         body {
-            font-family: 'Roboto', 'Microsoft YaHei', Arial, sans-serif;
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
             background-color: #f8f9fa;
             color: #202124;
             line-height: 1.5;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             transition: all 0.3s ease;
         }
@@ -59,7 +56,7 @@
         }
 
         html.dark-theme .logo {
-            box-shadow: 0 2px 8px rgba(255, 102, 102, 0.3);
+            box-shadow: 0 2px 8px rgba(66, 133, 244, 0.3);
         }
 
         html.dark-theme .logo-title {
@@ -77,13 +74,13 @@
         }
 
         html.dark-theme .nav-item:hover {
-            background: rgba(255, 102, 102, 0.15);
+            background: rgba(66, 133, 244, 0.15);
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         html.dark-theme .nav-item.active {
-            background: rgba(255, 102, 102, 0.25);
-            color: #ff8888;
+            background: rgba(66, 133, 244, 0.25);
+            color: #8ab4f8;
         }
 
         html.dark-theme .main-content {
@@ -140,7 +137,7 @@
         }
 
         html.dark-theme .setting-toggle.active {
-            background: rgba(255, 102, 102, 0.25);
+            background: rgba(66, 133, 244, 0.25);
         }
 
         html.dark-theme .save-button {
@@ -152,7 +149,7 @@
         html.dark-theme .save-button:hover {
             background: #494c50;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-            color: #ff8888;
+            color: #8ab4f8;
         }
 
         html.dark-theme .success-message {
@@ -168,11 +165,19 @@
         }
 
         html.dark-theme footer a {
-            color: #ff8888;
+            color: #8ab4f8;
         }
 
         html.dark-theme footer a:hover {
-            color: #ff6666;
+            color: #4285f4;
+        }
+
+        html.dark-theme .dev-badge span {
+            color: #ff8888 !important;
+        }
+
+        html.dark-theme .dev-badge span:last-child {
+            color: #e8eaed !important;
         }
 
         /* 左侧导航栏 */
@@ -203,21 +208,15 @@
         .logo {
             width: 64px;
             height: 64px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #ff9999, #ff6666);
             display: flex;
             align-items: center;
             justify-content: center;
             margin: 0 auto 16px;
-            font-size: 24px;
-            color: white;
-            box-shadow: 0 2px 8px rgba(255, 102, 102, 0.3);
             transition: all 0.2s ease;
         }
 
         .logo:hover {
             transform: scale(1.05);
-            box-shadow: 0 4px 12px rgba(255, 102, 102, 0.4);
         }
 
         .logo-title {
@@ -255,14 +254,14 @@
         }
 
         .nav-item:hover {
-            background: rgba(255, 102, 102, 0.08);
+            background: rgba(66, 133, 244, 0.08);
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
             transform: translateX(4px);
         }
 
         .nav-item.active {
-            background: rgba(255, 102, 102, 0.15);
-            color: #ff6666;
+            background: rgba(66, 133, 244, 0.15);
+            color: #4285f4;
             font-weight: 500;
         }
 
@@ -393,13 +392,13 @@
             color: #202124;
             cursor: pointer;
             transition: all 0.2s ease;
-            font-family: 'Roboto', 'Microsoft YaHei', Arial, sans-serif;
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
         }
 
         .setting-select:focus {
             outline: none;
-            border-color: #ff6666;
-            box-shadow: 0 0 0 3px rgba(255, 102, 102, 0.1);
+            border-color: #4285f4;
+            box-shadow: 0 0 0 3px rgba(66, 133, 244, 0.1);
         }
 
         .setting-toggle {
@@ -431,7 +430,7 @@
         }
 
         .setting-toggle.active {
-            background: rgba(255, 102, 102, 0.5);
+            background: rgba(66, 133, 244, 0.5);
         }
 
         .setting-toggle.active::before {
@@ -453,7 +452,7 @@
             color: #202124;
             cursor: pointer;
             transition: all 0.2s ease;
-            font-family: 'Roboto', 'Microsoft YaHei', Arial, sans-serif;
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
             letter-spacing: 0.25px;
         }
 
@@ -461,7 +460,7 @@
             background: #f1f3f4;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
             transform: translateY(-1px);
-            color: #ff6666;
+            color: #4285f4;
         }
 
         .success-message {
@@ -548,14 +547,52 @@
         }
 
         footer a {
-            color: #ff6666;
+            color: #4285f4;
             text-decoration: none;
             transition: all 0.2s ease;
         }
 
         footer a:hover {
             text-decoration: underline;
-            color: #ff3333;
+            color: #1a73e8;
+        }
+
+        /* 滚动条样式 */
+        /* 全局滚动条样式 */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        /* 滚动条轨道 */
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        /* 滚动条滑块 */
+        ::-webkit-scrollbar-thumb {
+            background: #c1c1c1;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        /* 滚动条滑块悬停 */
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8;
+        }
+
+        /* 深色主题滚动条 */
+        html.dark-theme ::-webkit-scrollbar-track {
+            background: #2a2a2a;
+        }
+
+        html.dark-theme ::-webkit-scrollbar-thumb {
+            background: #4a4a4a;
+        }
+
+        html.dark-theme ::-webkit-scrollbar-thumb:hover {
+            background: #6a6a6a;
         }
 
         /* 响应式设计 */
@@ -592,54 +629,76 @@
         }
 
         @media (max-width: 480px) {
+            body {
+                flex-direction: column;
+                min-height: 100vh;
+            }
+
             .sidebar {
                 width: 100%;
                 height: auto;
-                position: relative;
+                position: fixed;
+                bottom: 0;
+                left: 0;
                 flex-direction: row;
-                flex-wrap: wrap;
-                justify-content: center;
-                padding: 16px;
-                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                flex-wrap: nowrap;
+                justify-content: space-around;
+                padding: 8px 16px;
+                box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
                 border-right: none;
-                border-bottom: 1px solid #dadce0;
+                border-top: 1px solid #dadce0;
+                z-index: 1000;
+                background: #ffffff;
+            }
+
+            html.dark-theme .sidebar {
+                background: #1e1e1e;
             }
 
             .main-content {
                 margin-left: 0;
-                margin-top: 160px;
+                margin-bottom: 80px;
                 padding: 16px;
+                flex: 1;
             }
 
             .logo-section {
-                margin-bottom: 16px;
+                display: none;
             }
 
             .nav-menu {
                 flex-direction: row;
-                flex-wrap: wrap;
-                justify-content: center;
+                flex-wrap: nowrap;
+                justify-content: space-around;
+                width: 100%;
             }
 
             .nav-item {
                 flex: 1;
-                min-width: 100px;
+                min-width: auto;
                 justify-content: center;
-                padding: 8px;
+                padding: 8px 4px;
+                flex-direction: column;
+                gap: 4px;
             }
 
             .nav-icon {
-                margin-right: 4px;
+                margin-right: 0;
+                margin-bottom: 4px;
+            }
+
+            .nav-item span {
+                font-size: 12px;
             }
 
             .setting-item {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 8px;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
             }
 
             .setting-controls {
-                align-self: flex-end;
+                align-self: auto;
             }
         }
     </style>
@@ -648,7 +707,7 @@
     <!-- 左侧导航栏 -->
     <div class="sidebar">
         <div class="logo-section">
-            <div class="logo"><img src="icons/cat.svg" alt="MemMeow Logo" width="24" height="24"></div>
+            <div class="logo"><img src="favicon.ico" alt="MemMeow Logo" width="64" height="64"></div>
             <div class="logo-title">MemMeow</div>
             <div class="logo-subtitle">摩斯喵语转换器</div>
         </div>
@@ -695,7 +754,7 @@
                 </div>
 
                 <div class="setting-item">
-                    <div class="setting-label">主题模式</div>
+                    <div class="setting-label">深色模式</div>
                     <div class="setting-controls">
                         <div class="setting-toggle" id="themeToggle"></div>
                     </div>
@@ -765,6 +824,10 @@
 
             <footer>
                 <p>项目地址: <a href="https://github.com/XingGreen/MemMeow_2" target="_blank">https://github.com/XingGreen/MemMeow_2</a></p>
+                <div style="margin-top: 10px; font-size: 12px;" class="dev-badge">
+                    <span style="color: red;">开发中页面，不代表最终品质</span><br>
+                    <span style="color: black;">MemMeow dev</span>
+                </div>
             </footer>
         </div>
     </div>

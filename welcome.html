@@ -14,8 +14,7 @@
         }
     </script>
     <style>
-        /* 导入Roboto字体 - Google Material Design标准字体 */
-        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+
         
         * {
             margin: 0;
@@ -28,7 +27,7 @@
         }
 
         body {
-            font-family: 'Roboto', 'Microsoft YaHei', Arial, sans-serif;
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
             background-color: #f8f9fa;
             color: #202124;
             line-height: 1.5;
@@ -118,7 +117,7 @@
             cursor: pointer;
             transition: all 0.2s ease;
             text-align: left;
-            font-family: 'Roboto', 'Microsoft YaHei', Arial, sans-serif;
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
         }
 
         .option-btn:hover {
@@ -173,7 +172,7 @@
             font-weight: 500;
             cursor: pointer;
             transition: all 0.2s ease;
-            font-family: 'Roboto', 'Microsoft YaHei', Arial, sans-serif;
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
             letter-spacing: 0.25px;
         }
 
@@ -251,6 +250,14 @@
             background-color: rgba(255, 255, 255, 0.05);
             color: #e8eaed;
             border: 1px solid #3c4043;
+        }
+
+        html.dark-theme .dev-badge span {
+            color: #ff8888 !important;
+        }
+
+        html.dark-theme .dev-badge span:last-child {
+            color: #e8eaed !important;
         }
 
         html.dark-theme .card:hover {
@@ -395,6 +402,11 @@
                 <button class="btn btn-primary" onclick="startUsing()">开始使用</button>
             </div>
         </div>
+    </div>
+
+    <div style="position: fixed; bottom: 10px; left: 10px; font-size: 12px;" class="dev-badge">
+        <span style="color: red;">开发中页面，不代表最终品质</span><br>
+        <span style="color: black;">MemMeow dev</span>
     </div>
 
     <script src="lang.js"></script>
