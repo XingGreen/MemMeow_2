@@ -26,7 +26,7 @@
 
         body {
             font-family: 'Microsoft YaHei', Arial, sans-serif;
-            background-color: #f8f9fa;
+            background: #f0f9ff;
             color: #202124;
             line-height: 1.5;
             min-height: 100vh;
@@ -36,27 +36,73 @@
 
         /* 深色主题 */
         html.dark-theme {
-            background-color: #121212;
+            background: #1e293b;
             color: #e8eaed;
         }
 
+        /* 禁用毛玻璃效果 */
+        html.no-glass-effect .sidebar,
+        html.no-glass-effect .logo-section,
+        html.no-glass-effect .nav-item,
+        html.no-glass-effect h1,
+        html.no-glass-effect .history-section,
+        html.no-glass-effect .history-item,
+        html.no-glass-effect .history-content,
+        html.no-glass-effect .empty-history,
+        html.no-glass-effect .clear-button,
+        html.no-glass-effect .history-action-btn,
+        html.no-glass-effect footer,
+        html.no-glass-effect .custom-alert {
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            background: rgba(255, 255, 255, 0.95) !important;
+        }
+
+        html.no-glass-effect.dark-theme .sidebar,
+        html.no-glass-effect.dark-theme .logo-section,
+        html.no-glass-effect.dark-theme .nav-item,
+        html.no-glass-effect.dark-theme h1,
+        html.no-glass-effect.dark-theme .history-section,
+        html.no-glass-effect.dark-theme .history-item,
+        html.no-glass-effect.dark-theme .history-content,
+        html.no-glass-effect.dark-theme .empty-history,
+        html.no-glass-effect.dark-theme .clear-button,
+        html.no-glass-effect.dark-theme .history-action-btn,
+        html.no-glass-effect.dark-theme footer,
+        html.no-glass-effect.dark-theme .custom-alert {
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            background: rgba(30, 30, 30, 0.95) !important;
+        }
+
+        html.no-glass-effect .alert-overlay {
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            background: rgba(0, 0, 0, 0.5) !important;
+        }
+
         html.dark-theme body {
-            background-color: #121212;
+            background: #1e293b;
             color: #e8eaed;
         }
 
         html.dark-theme .sidebar {
-            background: #1e1e1e;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            background: rgba(30, 30, 30, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 5px 0 15px rgba(0, 0, 0, 0.3);
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         html.dark-theme .logo-section {
-            background: #1e1e1e;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            background: rgba(30, 30, 30, 0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
 
         html.dark-theme .logo {
-            box-shadow: 0 2px 8px rgba(66, 133, 244, 0.3);
+            box-shadow: 0 4px 12px rgba(66, 133, 244, 0.3);
         }
 
         html.dark-theme .logo-title {
@@ -68,63 +114,78 @@
         }
 
         html.dark-theme .nav-item {
-            background: #1e1e1e;
+            background: rgba(30, 30, 30, 0.7);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             color: #e8eaed;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         }
 
         html.dark-theme .nav-item:hover {
             background: rgba(66, 133, 244, 0.15);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 12px rgba(66, 133, 244, 0.2);
         }
 
         html.dark-theme .nav-item.active {
             background: rgba(66, 133, 244, 0.25);
             color: #8ab4f8;
+            box-shadow: 0 4px 12px rgba(66, 133, 244, 0.2);
         }
 
         html.dark-theme .main-content {
-            background: #121212;
+            background: transparent;
         }
 
         html.dark-theme h1 {
             color: #e8eaed;
-            background: #1e1e1e;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-            border: 1px solid #3c4043;
+            background: rgba(30, 30, 30, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         html.dark-theme .history-section {
-            background: #1e1e1e;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-            border: 1px solid #3c4043;
+            background: rgba(30, 30, 30, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         html.dark-theme .history-item {
-            background: #1e1e1e;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-            border: 1px solid #3c4043;
+            background: rgba(30, 30, 30, 0.7);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         html.dark-theme .history-content {
             color: #e8eaed;
-            background: rgba(255, 255, 255, 0.05);
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-            border: 1px solid #3c4043;
+            background: rgba(45, 45, 45, 0.9);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         html.dark-theme .empty-history {
             color: #9aa0a6;
-            background: #1e1e1e;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-            border: 1px solid #3c4043;
+            background: rgba(30, 30, 30, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         html.dark-theme footer {
-            background: #1e1e1e;
+            background: rgba(30, 30, 30, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             color: #9aa0a6;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-            border: 1px solid #3c4043;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         html.dark-theme h2 {
@@ -201,15 +262,17 @@
         /* 左侧导航栏 */
         .sidebar {
             width: 240px;
-            background: #ffffff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
             padding: 24px 16px;
             display: flex;
             flex-direction: column;
             align-items: center;
             position: fixed;
             height: 100vh;
-            border-right: 1px solid #dadce0;
+            border-right: 1px solid rgba(255, 255, 255, 0.2);
             transition: all 0.3s ease;
         }
 
@@ -217,9 +280,11 @@
             text-align: center;
             margin-bottom: 32px;
             padding: 20px;
-            border-radius: 12px;
-            background: #ffffff;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             width: 100%;
         }
 
@@ -262,25 +327,28 @@
             display: flex;
             align-items: center;
             padding: 12px 16px;
-            border-radius: 8px;
+            border-radius: 12px;
             cursor: pointer;
             transition: all 0.2s ease;
             color: #5f6368;
             text-decoration: none;
-            background: #ffffff;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
         }
 
         .nav-item:hover {
-            background: rgba(66, 133, 244, 0.08);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+            background: rgba(66, 133, 244, 0.1);
+            box-shadow: 0 4px 12px rgba(66, 133, 244, 0.15);
             transform: translateX(4px);
         }
 
         .nav-item.active {
-            background: rgba(66, 133, 244, 0.15);
+            background: rgba(66, 133, 244, 0.2);
             color: #4285f4;
             font-weight: 500;
+            box-shadow: 0 4px 12px rgba(66, 133, 244, 0.2);
         }
 
         .nav-icon {
@@ -313,7 +381,7 @@
             margin-left: 240px;
             padding: 32px;
             overflow-y: auto;
-            background: #f8f9fa;
+            background: transparent;
             min-height: 100vh;
         }
 
@@ -329,31 +397,35 @@
             font-size: 28px;
             font-weight: 500;
             padding: 20px;
-            border-radius: 8px;
-            background: #ffffff;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            border: 1px solid #dadce0;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             transition: all 0.2s ease;
         }
 
         h1:hover {
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
-            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
         }
 
         .history-section {
             padding: 24px;
-            border-radius: 8px;
-            background: #ffffff;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             margin-bottom: 32px;
             transition: all 0.2s ease;
-            border: 1px solid #dadce0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .history-section:hover {
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
-            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
         }
 
         .history-header {
@@ -373,9 +445,11 @@
         .clear-button {
             padding: 8px 16px;
             border: none;
-            border-radius: 4px;
-            background: #f8f9fa;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             font-size: 14px;
             font-weight: 500;
             color: #202124;
@@ -386,10 +460,16 @@
         }
 
         .clear-button:hover {
-            background: #f1f3f4;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
-            transform: translateY(-1px);
+            background: rgba(66, 133, 244, 0.1);
+            box-shadow: 0 4px 12px rgba(66, 133, 244, 0.2);
+            transform: translateY(-2px);
             color: #4285f4;
+        }
+
+        .clear-button:active {
+            background: rgba(66, 133, 244, 0.2);
+            box-shadow: 0 2px 6px rgba(66, 133, 244, 0.2);
+            transform: translateY(0);
         }
 
         .history-list {
@@ -400,16 +480,18 @@
 
         .history-item {
             padding: 16px;
-            border-radius: 8px;
-            background: #ffffff;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
             transition: all 0.2s ease;
-            border: 1px solid #dadce0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .history-item:hover {
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
-            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
         }
 
         .history-item-header {
@@ -433,9 +515,11 @@
         .history-action-btn {
             padding: 6px 12px;
             border: none;
-            border-radius: 4px;
-            background: #f8f9fa;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             font-size: 14px;
             font-weight: 500;
             color: #202124;
@@ -445,10 +529,16 @@
         }
 
         .history-action-btn:hover {
-            background: #f1f3f4;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
-            transform: translateY(-1px);
+            background: rgba(66, 133, 244, 0.1);
+            box-shadow: 0 4px 12px rgba(66, 133, 244, 0.2);
+            transform: translateY(-2px);
             color: #4285f4;
+        }
+
+        .history-action-btn:active {
+            background: rgba(66, 133, 244, 0.2);
+            box-shadow: 0 2px 6px rgba(66, 133, 244, 0.2);
+            transform: translateY(0);
         }
 
         .history-content {
@@ -457,10 +547,12 @@
             color: #202124;
             line-height: 1.5;
             padding: 12px;
-            border-radius: 4px;
-            background: #f8f9fa;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-            border: 1px solid #dadce0;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .empty-history {
@@ -469,10 +561,12 @@
             color: #5f6368;
             font-size: 16px;
             font-weight: 400;
-            border-radius: 8px;
-            background: #ffffff;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            border: 1px solid #dadce0;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         footer {
@@ -481,17 +575,19 @@
             font-weight: 400;
             color: #5f6368;
             padding: 20px;
-            border-radius: 8px;
-            background: #ffffff;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             margin-top: 32px;
             transition: all 0.2s ease;
-            border: 1px solid #dadce0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         footer:hover {
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
-            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
         }
 
         footer a {
@@ -541,6 +637,78 @@
 
         html.dark-theme ::-webkit-scrollbar-thumb:hover {
             background: #6a6a6a;
+        }
+
+        /* 自定义提示框 */
+        .custom-alert {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: 10000;
+            min-width: 300px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        html.dark-theme .custom-alert {
+            background: rgba(30, 30, 30, 0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        .custom-alert p {
+            margin-bottom: 20px;
+            font-size: 16px;
+            font-weight: 500;
+            color: #202124;
+        }
+
+        html.dark-theme .custom-alert p {
+            color: #e8eaed;
+        }
+
+        .custom-alert button {
+            padding: 8px 20px;
+            border: none;
+            border-radius: 12px;
+            background: rgba(66, 133, 244, 0.9);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            color: white;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(66, 133, 244, 0.3);
+        }
+
+        .custom-alert button:hover {
+            background: rgba(26, 115, 232, 0.9);
+            box-shadow: 0 6px 20px rgba(66, 133, 244, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .alert-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+            z-index: 9999;
+            transition: all 0.3s ease;
         }
 
         /* 响应式设计 */
@@ -594,13 +762,18 @@
                 padding: 8px 16px;
                 box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
                 border-right: none;
-                border-top: 1px solid #dadce0;
+                border-top: 1px solid rgba(255, 255, 255, 0.2);
                 z-index: 1000;
-                background: #ffffff;
+                background: rgba(255, 255, 255, 0.9);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
             }
 
             html.dark-theme .sidebar {
-                background: #1e1e1e;
+                background: rgba(30, 30, 30, 0.9);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
             }
 
             .main-content {
@@ -690,6 +863,9 @@
                         暂无转译历史
                     </div>
                 </div>
+                <div style="margin-top: 20px; text-align: center;">
+                    <button class="clear-button" onclick="loadHistory()">重新加载历史记录</button>
+                </div>
             </div>
 
             <footer>
@@ -716,58 +892,79 @@
     <script src="lang.js"></script>
     <script>
         // 加载历史记录
-        function loadHistory() {
-            const history = JSON.parse(localStorage.getItem('translationHistory') || '[]');
-            const historyList = document.getElementById('historyList');
-            const emptyHistory = document.getElementById('emptyHistory');
-            
-            if (history.length > 0) {
-                emptyHistory.style.display = 'none';
-                historyList.innerHTML = '';
+        async function loadHistory() {
+            try {
+                console.log('Loading history...');
                 
-                history.forEach((item, index) => {
-                    const historyItem = document.createElement('div');
-                    historyItem.className = 'history-item';
-                    historyItem.innerHTML = `
-                        <div class="history-item-header">
-                            <span class="history-time">${item.timestamp}</span>
-                            <div class="history-actions">
-                                <button class="history-action-btn" onclick="copyHistoryItem(${index})">{{copy}}</button>
-                                <button class="history-action-btn" onclick="deleteHistoryItem(${index})">{{delete}}</button>
-                            </div>
-                        </div>
-                        <div class="history-content">
-                            <strong>{{input}}:</strong> ${item.input}<br>
-                            <strong>{{output}}:</strong> ${item.output}<br>
-                            <strong>{{type}}:</strong> ${item.type}
-                        </div>
-                    `.replace(/{{copy}}/g, t('copy'))
-                      .replace(/{{delete}}/g, t('delete'))
-                      .replace(/{{input}}/g, t('input'))
-                      .replace(/{{output}}/g, t('output'))
-                      .replace(/{{type}}/g, t('type'));
-                    historyList.appendChild(historyItem);
-                });
-            } else {
-                emptyHistory.style.display = 'block';
+                // 检查window.db对象是否存在
+                if (typeof window.db === 'undefined') {
+                    console.error('window.db is not defined');
+                    alert('数据库连接失败，请重新启动应用程序');
+                    return;
+                }
+                
+                // 检查window.db.getHistory方法是否存在
+                if (typeof window.db.getHistory !== 'function') {
+                    console.error('window.db.getHistory is not a function');
+                    alert('数据库函数未正确暴露，请重新启动应用程序');
+                    return;
+                }
+                
+                // 获取历史记录
+                const history = await window.db.getHistory();
+                console.log('History data:', history);
+                
+                // 获取DOM元素
+                const historyList = document.getElementById('historyList');
+                const emptyHistory = document.getElementById('emptyHistory');
+                
+                console.log('History length:', history.length);
+                console.log('HistoryList element:', historyList);
+                console.log('EmptyHistory element:', emptyHistory);
+                
+                // 显示历史记录长度
+                alert('历史记录长度: ' + history.length);
+                
+                if (history.length > 0) {
+                    console.log('Showing history items');
+                    emptyHistory.style.display = 'none';
+                    historyList.innerHTML = '';
+                    
+                    for (let i = 0; i < history.length; i++) {
+                        const item = history[i];
+                        console.log('Processing history item', i, item);
+                        const historyItem = document.createElement('div');
+                        historyItem.className = 'history-item';
+                        historyItem.innerHTML = "<div class=\"history-item-header\"><span class=\"history-time\">" + item.timestamp + "</span><div class=\"history-actions\"><button class=\"history-action-btn\" onclick=\"copyHistoryItem('" + item.output + "')\">复制</button><button class=\"history-action-btn\" onclick=\"deleteHistoryItem(" + item.id + ")\">删除</button></div></div><div class=\"history-content\"><strong>输入:</strong> " + item.input + "<br><strong>输出:</strong> " + item.output + "<br><strong>类型:</strong> " + item.type + "</div>";
+                        historyList.appendChild(historyItem);
+                        console.log('Added history item', i);
+                    }
+                } else {
+                    console.log('No history items');
+                    emptyHistory.style.display = 'block';
+                }
+            } catch (error) {
+                console.error('Error loading history:', error);
+                alert('加载历史记录失败: ' + error.message);
             }
         }
 
         // 清空历史记录
-        function clearHistory() {
+        async function clearHistory() {
             if (confirm(t('confirmClearHistory'))) {
-                localStorage.removeItem('translationHistory');
-                loadHistory();
+                try {
+                    await window.db.clearHistory();
+                    loadHistory();
+                } catch (error) {
+                    console.error('Error clearing history:', error);
+                    alert('清空历史记录失败: ' + error.message);
+                }
             }
         }
 
         // 复制历史记录
-        function copyHistoryItem(index) {
-            const history = JSON.parse(localStorage.getItem('translationHistory') || '[]');
-            const item = history[index];
-            const textToCopy = item.output;
-            
-            navigator.clipboard.writeText(textToCopy).then(() => {
+        function copyHistoryItem(output) {
+            navigator.clipboard.writeText(output).then(() => {
                 alert(t('copySuccess'));
             }).catch(err => {
                 console.error('复制失败:', err);
@@ -775,11 +972,14 @@
         }
 
         // 删除历史记录
-        function deleteHistoryItem(index) {
-            const history = JSON.parse(localStorage.getItem('translationHistory') || '[]');
-            history.splice(index, 1);
-            localStorage.setItem('translationHistory', JSON.stringify(history));
-            loadHistory();
+        async function deleteHistoryItem(id) {
+            try {
+                await window.db.deleteHistory(id);
+                loadHistory();
+            } catch (error) {
+                console.error('Error deleting history:', error);
+                alert('删除历史记录失败: ' + error.message);
+            }
         }
 
         // 应用语言
@@ -803,10 +1003,67 @@
             document.querySelector('footer p').innerHTML = t('projectAddress') + ': <a href="https://github.com/XingGreen/MemMeow_2" target="_blank">https://github.com/XingGreen/MemMeow_2</a>';
         }
 
-        // 页面加载时加载历史记录和应用语言
+        // 自定义提示框函数
+        function showAlert(message) {
+            // 创建遮罩层
+            const overlay = document.createElement('div');
+            overlay.className = 'alert-overlay';
+            document.body.appendChild(overlay);
+            
+            // 创建提示框
+            const alertBox = document.createElement('div');
+            alertBox.className = 'custom-alert';
+            alertBox.innerHTML = `
+                <p>${message}</p>
+                <button onclick="closeAlert()">确定</button>
+            `;
+            document.body.appendChild(alertBox);
+            
+            // 添加动画效果
+            setTimeout(() => {
+                overlay.style.opacity = '1';
+                alertBox.style.opacity = '1';
+                alertBox.style.transform = 'translate(-50%, -50%) scale(1)';
+            }, 10);
+        }
+
+        // 关闭提示框函数
+        function closeAlert() {
+            const overlay = document.querySelector('.alert-overlay');
+            const alertBox = document.querySelector('.custom-alert');
+            
+            if (overlay && alertBox) {
+                overlay.style.opacity = '0';
+                alertBox.style.opacity = '0';
+                alertBox.style.transform = 'translate(-50%, -50%) scale(0.9)';
+                
+                setTimeout(() => {
+                    document.body.removeChild(overlay);
+                    document.body.removeChild(alertBox);
+                }, 300);
+            }
+        }
+
+        // 应用毛玻璃效果设置
+        function applyGlassEffect() {
+            const glassEffect = localStorage.getItem('glassEffect') !== 'false';
+            if (glassEffect) {
+                document.documentElement.classList.remove('no-glass-effect');
+            } else {
+                document.documentElement.classList.add('no-glass-effect');
+            }
+        }
+
+        // 覆盖默认的alert函数
+        window.alert = function(message) {
+            showAlert(message);
+        };
+
+        // 页面加载时加载历史记录、应用语言和毛玻璃效果
         window.onload = function() {
-            loadHistory();
             applyLanguage();
+            applyGlassEffect();
+            loadHistory();
         };
     </script>
 </body>

@@ -28,7 +28,7 @@
 
         body {
             font-family: 'Microsoft YaHei', Arial, sans-serif;
-            background-color: #f8f9fa;
+            background: #f0f9ff;
             color: #202124;
             line-height: 1.5;
             min-height: 100vh;
@@ -38,27 +38,69 @@
 
         /* 深色主题 */
         html.dark-theme {
-            background-color: #121212;
+            background: #1e293b;
             color: #e8eaed;
         }
 
+        /* 禁用毛玻璃效果 */
+        html.no-glass-effect .sidebar,
+        html.no-glass-effect .logo-section,
+        html.no-glass-effect .nav-item,
+        html.no-glass-effect h1,
+        html.no-glass-effect .morse-table,
+        html.no-glass-effect .rule-section,
+        html.no-glass-effect .info-section,
+        html.no-glass-effect button,
+        html.no-glass-effect footer,
+        html.no-glass-effect .custom-alert {
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            background: rgba(255, 255, 255, 0.95) !important;
+        }
+
+        html.no-glass-effect.dark-theme .sidebar,
+        html.no-glass-effect.dark-theme .logo-section,
+        html.no-glass-effect.dark-theme .nav-item,
+        html.no-glass-effect.dark-theme h1,
+        html.no-glass-effect.dark-theme .morse-table,
+        html.no-glass-effect.dark-theme .rule-section,
+        html.no-glass-effect.dark-theme .info-section,
+        html.no-glass-effect.dark-theme button,
+        html.no-glass-effect.dark-theme footer,
+        html.no-glass-effect.dark-theme .custom-alert {
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            background: rgba(30, 30, 30, 0.95) !important;
+        }
+
+        html.no-glass-effect .alert-overlay {
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            background: rgba(0, 0, 0, 0.5) !important;
+        }
+
         html.dark-theme body {
-            background-color: #121212;
+            background: #1e293b;
             color: #e8eaed;
         }
 
         html.dark-theme .sidebar {
-            background: #1e1e1e;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            background: rgba(30, 30, 30, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 5px 0 15px rgba(0, 0, 0, 0.3);
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         html.dark-theme .logo-section {
-            background: #1e1e1e;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            background: rgba(30, 30, 30, 0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
 
         html.dark-theme .logo {
-            box-shadow: 0 2px 8px rgba(66, 133, 244, 0.3);
+            box-shadow: 0 4px 12px rgba(66, 133, 244, 0.3);
         }
 
         html.dark-theme .logo-title {
@@ -70,30 +112,35 @@
         }
 
         html.dark-theme .nav-item {
-            background: #1e1e1e;
+            background: rgba(30, 30, 30, 0.7);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             color: #e8eaed;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         }
 
         html.dark-theme .nav-item:hover {
             background: rgba(66, 133, 244, 0.15);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 12px rgba(66, 133, 244, 0.2);
         }
 
         html.dark-theme .nav-item.active {
             background: rgba(66, 133, 244, 0.25);
             color: #8ab4f8;
+            box-shadow: 0 4px 12px rgba(66, 133, 244, 0.2);
         }
 
         html.dark-theme .main-content {
-            background: #121212;
+            background: transparent;
         }
 
         html.dark-theme h1 {
             color: #e8eaed;
-            background: #1e1e1e;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-            border: 1px solid #3c4043;
+            background: rgba(30, 30, 30, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         html.dark-theme h2 {
@@ -101,8 +148,11 @@
         }
 
         html.dark-theme .morse-table {
-            background: #1e1e1e;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            background: rgba(30, 30, 30, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         html.dark-theme .morse-table th {
@@ -116,33 +166,33 @@
 
         html.dark-theme .rule-section,
         html.dark-theme .info-section {
-            background: #1e1e1e;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-            border: 1px solid #3c4043;
-        }
-
-        html.dark-theme .morse-table {
-            background: #1e1e1e;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-            border: 1px solid #3c4043;
+            background: rgba(30, 30, 30, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         html.dark-theme footer {
-            background: #1e1e1e;
+            background: rgba(30, 30, 30, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             color: #9aa0a6;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-            border: 1px solid #3c4043;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         html.dark-theme button {
-            background: #3c4043;
+            background: rgba(60, 64, 67, 0.9);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             color: #e8eaed;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         }
 
         html.dark-theme button:hover {
-            background: #494c50;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            background: rgba(66, 133, 244, 0.15);
+            box-shadow: 0 4px 12px rgba(66, 133, 244, 0.2);
             color: #8ab4f8;
         }
 
@@ -171,15 +221,17 @@
         /* 左侧导航栏 */
         .sidebar {
             width: 240px;
-            background: #ffffff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
             padding: 24px 16px;
             display: flex;
             flex-direction: column;
             align-items: center;
             position: fixed;
             height: 100vh;
-            border-right: 1px solid #dadce0;
+            border-right: 1px solid rgba(255, 255, 255, 0.2);
             transition: all 0.3s ease;
         }
 
@@ -187,9 +239,11 @@
             text-align: center;
             margin-bottom: 32px;
             padding: 20px;
-            border-radius: 12px;
-            background: #ffffff;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             width: 100%;
         }
 
@@ -232,25 +286,28 @@
             display: flex;
             align-items: center;
             padding: 12px 16px;
-            border-radius: 8px;
+            border-radius: 12px;
             cursor: pointer;
             transition: all 0.2s ease;
             color: #5f6368;
             text-decoration: none;
-            background: #ffffff;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
         }
 
         .nav-item:hover {
-            background: rgba(66, 133, 244, 0.08);
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+            background: rgba(66, 133, 244, 0.1);
+            box-shadow: 0 4px 12px rgba(66, 133, 244, 0.15);
             transform: translateX(4px);
         }
 
         .nav-item.active {
-            background: rgba(66, 133, 244, 0.15);
+            background: rgba(66, 133, 244, 0.2);
             color: #4285f4;
             font-weight: 500;
+            box-shadow: 0 4px 12px rgba(66, 133, 244, 0.2);
         }
 
         .nav-icon {
@@ -283,7 +340,7 @@
             margin-left: 240px;
             padding: 32px;
             overflow-y: auto;
-            background: #f8f9fa;
+            background: transparent;
             min-height: 100vh;
         }
 
@@ -299,16 +356,18 @@
             font-size: 28px;
             font-weight: 500;
             padding: 20px;
-            border-radius: 8px;
-            background: #ffffff;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            border: 1px solid #dadce0;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             transition: all 0.2s ease;
         }
 
         h1:hover {
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
-            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
         }
 
         h2 {
@@ -323,23 +382,25 @@
             width: 100%;
             border-collapse: collapse;
             margin: 16px 0;
-            background: #ffffff;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 16px;
             overflow: hidden;
             transition: all 0.2s ease;
-            border: 1px solid #dadce0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .morse-table:hover {
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
-            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
         }
 
         .morse-table th, .morse-table td {
             padding: 12px;
             text-align: center;
-            border-bottom: 1px solid #f0f0f0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         .morse-table th {
@@ -352,32 +413,36 @@
         .rule-section {
             padding: 20px;
             margin: 20px 0;
-            border-radius: 8px;
-            background: #ffffff;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             transition: all 0.2s ease;
-            border: 1px solid #dadce0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .rule-section:hover {
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
-            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
         }
 
         .info-section {
             text-align: center;
             margin-top: 32px;
             padding: 20px;
-            border-radius: 8px;
-            background: #ffffff;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             transition: all 0.2s ease;
-            border: 1px solid #dadce0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .info-section:hover {
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
-            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
         }
 
         button {
@@ -385,9 +450,11 @@
             margin: 24px auto 0;
             padding: 8px 16px;
             border: none;
-            border-radius: 4px;
-            background: #f8f9fa;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             font-size: 14px;
             font-weight: 500;
             color: #202124;
@@ -398,10 +465,16 @@
         }
 
         button:hover {
-            background: #f1f3f4;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
-            transform: translateY(-1px);
+            background: rgba(66, 133, 244, 0.1);
+            box-shadow: 0 4px 12px rgba(66, 133, 244, 0.2);
+            transform: translateY(-2px);
             color: #4285f4;
+        }
+
+        button:active {
+            background: rgba(66, 133, 244, 0.2);
+            box-shadow: 0 2px 6px rgba(66, 133, 244, 0.2);
+            transform: translateY(0);
         }
 
         footer {
@@ -410,17 +483,19 @@
             font-weight: 400;
             color: #5f6368;
             padding: 20px;
-            border-radius: 8px;
-            background: #ffffff;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             margin-top: 32px;
             transition: all 0.2s ease;
-            border: 1px solid #dadce0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         footer:hover {
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
-            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
         }
 
         footer a {
@@ -470,6 +545,78 @@
 
         html.dark-theme ::-webkit-scrollbar-thumb:hover {
             background: #6a6a6a;
+        }
+
+        /* 自定义提示框 */
+        .custom-alert {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: 10000;
+            min-width: 300px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        html.dark-theme .custom-alert {
+            background: rgba(30, 30, 30, 0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        .custom-alert p {
+            margin-bottom: 20px;
+            font-size: 16px;
+            font-weight: 500;
+            color: #202124;
+        }
+
+        html.dark-theme .custom-alert p {
+            color: #e8eaed;
+        }
+
+        .custom-alert button {
+            padding: 8px 20px;
+            border: none;
+            border-radius: 12px;
+            background: rgba(66, 133, 244, 0.9);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            color: white;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(66, 133, 244, 0.3);
+        }
+
+        .custom-alert button:hover {
+            background: rgba(26, 115, 232, 0.9);
+            box-shadow: 0 6px 20px rgba(66, 133, 244, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .alert-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+            z-index: 9999;
+            transition: all 0.3s ease;
         }
 
         /* 响应式设计 */
@@ -533,13 +680,18 @@
                 padding: 8px 16px;
                 box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
                 border-right: none;
-                border-top: 1px solid #dadce0;
+                border-top: 1px solid rgba(255, 255, 255, 0.2);
                 z-index: 1000;
-                background: #ffffff;
+                background: rgba(255, 255, 255, 0.9);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
             }
 
             html.dark-theme .sidebar {
-                background: #1e1e1e;
+                background: rgba(30, 30, 30, 0.9);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                border-top: 1px solid rgba(255, 255, 255, 0.1);
             }
 
             .main-content {
@@ -722,17 +874,74 @@
             document.querySelectorAll('th')[1].textContent = t('morseCode');
             document.querySelectorAll('h2')[1].textContent = t('meowLanguageConversionRules');
             document.querySelectorAll('h2')[2].textContent = t('example');
-            document.querySelectorAll('.info-section p')[0].innerHTML = '<strong>' + t('version') + ':</strong> 1.0.0';
-            document.querySelectorAll('.info-section p')[1].innerHTML = '<strong>' + t('author') + ':</strong> MorseMeow Team';
+            document.querySelectorAll('.info-section p')[0].innerHTML = '<strong>' + t('version') + ':</strong> 1.1.0';
+            document.querySelectorAll('.info-section p')[1].innerHTML = '<strong>' + t('author') + ':</strong>XingGreen&Trae CN SOLO ';
             document.querySelectorAll('.info-section p')[2].innerHTML = '<strong>' + t('features') + ':</strong> ' + t('实现字母支持汉字自动转拼音摩斯电码喵语三者之间的双向转换');
             
             // 页脚
             document.querySelector('footer p').innerHTML = t('projectAddress') + ': <a href="https://github.com/XingGreen/MemMeow_2" target="_blank">https://github.com/XingGreen/MemMeow_2</a>';
         }
 
-        // 页面加载时应用语言
+        // 自定义提示框函数
+        function showAlert(message) {
+            // 创建遮罩层
+            const overlay = document.createElement('div');
+            overlay.className = 'alert-overlay';
+            document.body.appendChild(overlay);
+            
+            // 创建提示框
+            const alertBox = document.createElement('div');
+            alertBox.className = 'custom-alert';
+            alertBox.innerHTML = `
+                <p>${message}</p>
+                <button onclick="closeAlert()">确定</button>
+            `;
+            document.body.appendChild(alertBox);
+            
+            // 添加动画效果
+            setTimeout(() => {
+                overlay.style.opacity = '1';
+                alertBox.style.opacity = '1';
+                alertBox.style.transform = 'translate(-50%, -50%) scale(1)';
+            }, 10);
+        }
+
+        // 关闭提示框函数
+        function closeAlert() {
+            const overlay = document.querySelector('.alert-overlay');
+            const alertBox = document.querySelector('.custom-alert');
+            
+            if (overlay && alertBox) {
+                overlay.style.opacity = '0';
+                alertBox.style.opacity = '0';
+                alertBox.style.transform = 'translate(-50%, -50%) scale(0.9)';
+                
+                setTimeout(() => {
+                    document.body.removeChild(overlay);
+                    document.body.removeChild(alertBox);
+                }, 300);
+            }
+        }
+
+        // 应用毛玻璃效果设置
+        function applyGlassEffect() {
+            const glassEffect = localStorage.getItem('glassEffect') !== 'false';
+            if (glassEffect) {
+                document.documentElement.classList.remove('no-glass-effect');
+            } else {
+                document.documentElement.classList.add('no-glass-effect');
+            }
+        }
+
+        // 覆盖默认的alert函数
+        window.alert = function(message) {
+            showAlert(message);
+        };
+
+        // 页面加载时应用语言和毛玻璃效果
         window.onload = function() {
             applyLanguage();
+            applyGlassEffect();
         };
     </script>
 </body>

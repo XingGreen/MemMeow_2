@@ -25,10 +25,12 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "type": "commonjs",
   "dependencies": {
     "pinyin": "^4.0.0",
+    "pinyin-pro": "^3.28.0",
+    "sqlite3": "^6.0.1",
     "yauzl": "^3.2.0"
   },
   "devDependencies": {

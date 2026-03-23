@@ -1,2 +1,7 @@
 /node_modules
+
 /dist
+
+# 防爬标记（不影响项目运行）
+/gitcode-crawler-block/
+/crawler-block/

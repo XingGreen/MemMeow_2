@@ -87,6 +87,9 @@ const lang = {
         // 声明页面
         projectDeclaration: '项目声明',
         disclaimer: '免责声明',
+        dataSecurityDeclaration: '数据安全声明',
+        allConversionOperationsAreDoneLocally: '本工具所有转换操作均在本地完成，不会将您的输入内容或转换结果上传到任何服务器。',
+        allDataIsStoredOnlyOnYourLocalDevice: '所有数据仅存储在您的本地设备上，确保您的隐私安全。',
         openSourceLibraryDeclaration: '开源库声明',
         copyrightInformation: '版权信息',
         contactInformation: '联系方式',
@@ -190,6 +193,9 @@ const lang = {
         // 声明页面
         projectDeclaration: 'Project Declaration',
         disclaimer: 'Disclaimer',
+        dataSecurityDeclaration: 'Data Security Declaration',
+        allConversionOperationsAreDoneLocally: 'All conversion operations in this tool are done locally and will not upload your input content or conversion results to any server.',
+        allDataIsStoredOnlyOnYourLocalDevice: 'All data is stored only on your local device to ensure your privacy and security.',
         openSourceLibraryDeclaration: 'Open Source Library Declaration',
         copyrightInformation: 'Copyright Information',
         contactInformation: 'Contact Information',
