@@ -827,6 +827,21 @@
                 <p><strong>喵语：</strong>喵喵喵 呜呜呜 喵喵喵</p>
             </div>
 
+            <h2>作者想说</h2>
+            <div class="rule-section">
+                <p>我是一名氛围编程工程师（Vibe Coding），这款软件是我和 Trae CN SOLO 一起协作开发的 GUI 项目，它还有几个可爱的名字：喵啊～、MemMeow、忆喵。</p>
+                <p>软件是用 HTML 开发的，已经用tauri打包成了 .apk 安卓安装包 和 .exe Windows 安装包，并且完全开源到 GitHub 社区，欢迎大家去提交 issues，提出你的改进建议。</p>
+                <p>这里也提醒一下：本软件仅用于娱乐，不负任何法律责任。</p>
+                <p>其实这款 MemMeow（摩斯喵语转译器），是我和 Trae CN SOLO 经历了几个小时的"击裂豆蒸"之后，终于开发出来的项目雏形。</p>
+                <p>为什么会做这个项目呢？</p>
+                <p>因为之前我把 AI 代写生成的摩斯喵语图片发到群里，有人说这样太浪费算力了，建议我直接用函数写一个。</p>
+                <p>再加上我自己也想用这种"摩斯喵语"来做趣味加密交流，于是就有了做这个软件的想法。</p>
+                <p>而且我很早之前就有一个心愿：做出一款完全属于自己的软件。</p>
+                <p>Vibe Coding 弥补了我技术力不足的问题，让我的想法能够快速实现。</p>
+                <p>在这里也特别感谢字节跳动公司开发了 Trae 这个 AI IDE，让我真的完成了这个愿望。</p>
+                <p>如果你喜欢这款小工具，欢迎去 GitHub 支持一下，我们后续也会继续更新优化～</p>
+            </div>
+
             <div class="info-section">
                 <p><strong>版本：</strong>1.1.0</p>
                 <p><strong>作者：</strong>XingGreen&Trae CN SOLO</p>
@@ -938,10 +953,19 @@
             showAlert(message);
         };
 
-        // 页面加载时应用语言和毛玻璃效果
+        // 应用页面缩放
+        function applyZoom() {
+            const zoom = localStorage.getItem('zoom') || '100';
+            // 确保缩放值在0-100之间
+            const zoomValue = Math.max(0, Math.min(100, parseInt(zoom)));
+            document.documentElement.style.fontSize = (zoomValue / 100) * 18 + 'px';
+        }
+
+        // 页面加载时应用语言、毛玻璃效果和页面缩放
         window.onload = function() {
             applyLanguage();
             applyGlassEffect();
+            applyZoom();
         };
     </script>
 </body>

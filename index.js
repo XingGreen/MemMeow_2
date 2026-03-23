@@ -15,11 +15,11 @@ function createWindow() {
     icon: path.join(__dirname, 'favicon.ico')
   });
 
-  mainWindow.loadFile('index.html');
+  mainWindow.loadFile('welcome.html');
 
   // 打开开发者工具（可选）
   //mainWindow.webContents.openDevTools();
-//}
+}
 
 app.whenReady().then(async () => {
   try {

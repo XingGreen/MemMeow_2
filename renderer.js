@@ -214,6 +214,14 @@ async function saveHistory(input, output, type) {
     }
 }
 
+// 保存状态函数
+function saveState() {
+    const inputText = document.getElementById('inputText').value;
+    const outputText = document.getElementById('outputText').value;
+    localStorage.setItem('inputText', inputText);
+    localStorage.setItem('outputText', outputText);
+}
+
 // 转换为摩斯电码
 async function convertToMorse() {
     showLoading();
@@ -224,6 +232,7 @@ async function convertToMorse() {
         const output = await letterToMorse(input);
         console.log('Output:', output);
         document.getElementById('outputText').value = output;
+        saveState(); // 保存状态
         console.log('Calling saveHistory...');
         await saveHistory(input, output, '摩斯电码');
         console.log('saveHistory completed');
@@ -256,6 +265,7 @@ async function convertToMeow() {
         
         const output = await morseToMeow(morse);
         document.getElementById('outputText').value = output;
+        saveState(); // 保存状态
         await saveHistory(input, output, '喵语');
     } catch (error) {
         console.error('Error converting to Meow:', error);
@@ -283,6 +293,7 @@ async function convertToLetter() {
         
         const output = await morseToLetter(morse);
         document.getElementById('outputText').value = output;
+        saveState(); // 保存状态
         await saveHistory(input, output, '字母');
     } catch (error) {
         console.error('Error converting to Letter:', error);
@@ -290,6 +301,13 @@ async function convertToLetter() {
     } finally {
         hideLoading();
     }
+}
+
+// 清空输入
+function clearInput() {
+    document.getElementById('inputText').value = '';
+    document.getElementById('outputText').value = '';
+    saveState(); // 保存清空状态
 }
 
 // 打开关于页面

@@ -985,10 +985,48 @@
             document.querySelector('footer p').innerHTML = t('projectAddress') + ': <a href="https://github.com/XingGreen/MemMeow_2" target="_blank">https://github.com/XingGreen/MemMeow_2</a>';
         }
 
-        // 页面加载时应用语言和毛玻璃效果
+        // 保存输入和输出状态
+        function saveState() {
+            const inputText = document.getElementById('inputText').value;
+            const outputText = document.getElementById('outputText').value;
+            localStorage.setItem('inputText', inputText);
+            localStorage.setItem('outputText', outputText);
+        }
+
+        // 恢复输入和输出状态
+        function restoreState() {
+            const inputText = localStorage.getItem('inputText') || '';
+            const outputText = localStorage.getItem('outputText') || '';
+            document.getElementById('inputText').value = inputText;
+            document.getElementById('outputText').value = outputText;
+        }
+
+        // 应用页面缩放
+        function applyZoom() {
+            const zoom = localStorage.getItem('zoom') || '100';
+            // 确保缩放值在0-100之间
+            const zoomValue = Math.max(0, Math.min(100, parseInt(zoom)));
+            document.documentElement.style.fontSize = (zoomValue / 100) * 18 + 'px';
+        }
+
+        // 页面加载时应用语言、毛玻璃效果、恢复状态并添加事件监听器
         window.onload = function() {
             applyLanguage();
             applyGlassEffect();
+            applyZoom();
+            restoreState();
+            
+            // 监听输入变化
+            const inputText = document.getElementById('inputText');
+            if (inputText) {
+                inputText.addEventListener('input', saveState);
+            }
+            
+            // 监听输出变化
+            const outputText = document.getElementById('outputText');
+            if (outputText) {
+                outputText.addEventListener('input', saveState);
+            }
         };
     </script>
 </body>

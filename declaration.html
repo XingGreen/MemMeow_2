@@ -845,10 +845,19 @@
             showAlert(message);
         };
 
-        // 页面加载时应用语言和毛玻璃效果
+        // 应用页面缩放
+        function applyZoom() {
+            const zoom = localStorage.getItem('zoom') || '100';
+            // 确保缩放值在0-100之间
+            const zoomValue = Math.max(0, Math.min(100, parseInt(zoom)));
+            document.documentElement.style.fontSize = (zoomValue / 100) * 18 + 'px';
+        }
+
+        // 页面加载时应用语言、毛玻璃效果和页面缩放
         window.onload = function() {
             applyLanguage();
             applyGlassEffect();
+            applyZoom();
         };
     </script>
 </body>
