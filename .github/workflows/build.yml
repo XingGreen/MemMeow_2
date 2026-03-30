@@ -14,12 +14,21 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
     
     - name: Set up Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: '20'
+        node-version: '22'
         cache: 'npm'
+    
+    - name: Show environment info
+      run: |
+        node --version
+        npm --version
+        echo "Windows version: $env:OS"
+        echo "Current directory: $(Get-Location)"
     
     - name: Configure npm
       run: |
@@ -28,6 +37,7 @@ jobs:
         npm config set fetch-retry-factor 2
         npm config set fetch-retry-mintimeout 10000
         npm config set fetch-retry-maxtimeout 60000
+        npm config set registry https://registry.npmmirror.com/
     
     - name: Clean npm cache
       run: npm cache clean --force
@@ -36,9 +46,16 @@ jobs:
       run: npm install --verbose
       timeout-minutes: 20
     
+    - name: Show installed dependencies
+      run: npm list
+    
     - name: Build app
       run: npm run build
       timeout-minutes: 20
+    
+    - name: Show dist directory contents
+      run: ls -la dist/
+      if: always()
     
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
