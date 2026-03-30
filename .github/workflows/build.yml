@@ -31,6 +31,8 @@ jobs:
         npm --version
         echo "Windows version: $env:OS"
         echo "Current directory: $(Get-Location)"
+        echo "Environment variables:"
+        Get-ChildItem env:
     
     - name: Configure npm
       run: |
@@ -40,6 +42,7 @@ jobs:
         npm config set fetch-retry-mintimeout 10000
         npm config set fetch-retry-maxtimeout 60000
         npm config set registry https://registry.npmmirror.com/
+        npm config list
     
     - name: Clean npm cache
       run: npm cache clean --force
@@ -49,14 +52,23 @@ jobs:
       timeout-minutes: 20
     
     - name: Show installed dependencies
-      run: npm list
+      run: npm list --depth=0
     
     - name: Build app
-      run: npm run build
+      run: |
+        echo "Starting build..."
+        npm run build --verbose
+        echo "Build completed"
       timeout-minutes: 20
     
     - name: Show dist directory contents
-      run: ls -la dist/
+      run: |
+        echo "Contents of dist directory:"
+        if (Test-Path dist) {
+          Get-ChildItem -Path dist -Recurse
+        } else {
+          echo "dist directory does not exist"
+        }
       if: always()
     
     - name: Upload artifacts
