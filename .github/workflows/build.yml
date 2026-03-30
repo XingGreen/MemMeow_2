@@ -10,59 +10,35 @@ jobs:
   build:
     runs-on: windows-latest
     timeout-minutes: 45
-    env:
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-      ELECTRON_BUILDER_ALLOW_UNRESOLVED_DEPENDENCIES: true
     
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
     
     - name: Set up Node.js
       uses: actions/setup-node@v4
       with:
         node-version: '24'
-        cache: 'npm'
-    
-    - name: Show environment info
-      run: |
-        node --version
-        npm --version
-        echo "Windows version: $env:OS"
-        echo "Current directory: $(Get-Location)"
-    
-    - name: Configure npm
-      run: |
-        npm config set timeout 1200000
-        npm config set fetch-retries 5
-        npm config set fetch-retry-factor 2
-        npm config set fetch-retry-mintimeout 10000
-        npm config set fetch-retry-maxtimeout 60000
-        npm config set registry https://registry.npmmirror.com/
-    
-    - name: Clean npm cache
-      run: npm cache clean --force
     
     - name: Install dependencies
-      run: npm install --verbose
+      run: |
+        npm config set registry https://registry.npmmirror.com/
+        npm install --verbose
       timeout-minutes: 20
     
-    - name: Build app (directory version)
+    - name: Build directory version
       run: |
         echo "Building directory version..."
-        npm run build:dir
-        echo "Directory version built successfully"
+        npx electron-builder --dir
+        echo "Build completed"
       timeout-minutes: 20
     
-    - name: Show dist directory contents
+    - name: List dist contents
       run: |
-        echo "Contents of dist directory:"
         if (Test-Path dist) {
           Get-ChildItem -Path dist -Recurse
         } else {
-          echo "dist directory does not exist"
+          echo "dist directory not found"
         }
       if: always()
     
