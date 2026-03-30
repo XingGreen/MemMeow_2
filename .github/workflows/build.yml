@@ -31,3 +31,18 @@ jobs:
       with:
         name: memmeow-installer
         path: dist/
+
+steps:
+  - name: Checkout code
+    uses: actions/checkout@v4
+    with:
+      # 使用镜像代理加速拉取
+      repository: XingGreen/MemMeow_2.git
+      token: ${{ secrets.GITHUB_TOKEN }}
+      # 关键：配置 Git 代理（针对 github.com）
+      fetch-depth: 0
+    env:
+      # 配置 Git 使用国内镜像或代理解析
+      GIT_CONFIG_GLOBAL: |
+        [url "https://ghproxy.com/https://github.com/"]
+          insteadOf = https://github.com/
