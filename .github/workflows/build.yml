@@ -9,6 +9,7 @@ on:
 jobs:
   build:
     runs-on: windows-latest
+    timeout-minutes: 45
     
     steps:
     - name: Checkout code
@@ -20,14 +21,28 @@ jobs:
         node-version: '20'
         cache: 'npm'
     
+    - name: Configure npm
+      run: |
+        npm config set timeout 1200000
+        npm config set fetch-retries 5
+        npm config set fetch-retry-factor 2
+        npm config set fetch-retry-mintimeout 10000
+        npm config set fetch-retry-maxtimeout 60000
+    
+    - name: Clean npm cache
+      run: npm cache clean --force
+    
     - name: Install dependencies
-      run: npm install
+      run: npm install --verbose
+      timeout-minutes: 20
     
     - name: Build app
       run: npm run build
+      timeout-minutes: 20
     
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
       with:
         name: memmeow-installer
         path: dist/
+        retention-days: 30
